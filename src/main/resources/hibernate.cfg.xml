@@ -11,15 +11,15 @@
             com.mysql.jdbc.Driver
         </property>
 
-        <!-- Assume test is the database name -->
+        <!-- sql7145733 is the database name -->
         <property name="hibernate.connection.url">
-            jdbc:mysql://localhost/test
+            jdbc:mysql://sql7.freemysqlhosting.net/sql7145733
         </property>
         <property name="hibernate.connection.username">
-            admin
+            sql7145733
         </property>
         <property name="hibernate.connection.password">
-            root
+            WSeC627snV
         </property>
 
         <!-- List of XML mapping files -->

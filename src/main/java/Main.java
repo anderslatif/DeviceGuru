@@ -1,3 +1,4 @@
+import com.sun.javafx.application.LauncherImpl;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -17,16 +18,6 @@ public class Main extends Application{
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-
-		BorderPane root = new BorderPane();
-		Scene scene = new Scene(root, 300, 250);
-
-		primaryStage.setTitle("Hello World!");
-		primaryStage.setScene(scene);
-		primaryStage.show();
-
-
-		/*
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("view/Login.fxml"));
 
 		Map<String, Object> session = new HashMap<String, Object>();
@@ -35,14 +26,12 @@ public class Main extends Application{
 		loader.setController(mainController);
 		BorderPane root = loader.load();
 
-
-
 		primaryStage.setTitle("DeviceManager");
 		Scene scene = new Scene(root);
 		//primaryStage.getIcons().add(new Image("images/Logo.png"));
 		primaryStage.setScene(scene);
 		primaryStage.setMaximized(true);
-		primaryStage.show();*/
+		primaryStage.show();
 	}
 
 }
