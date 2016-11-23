@@ -1,6 +1,7 @@
 import java.sql.Date;
 import java.util.List;
 
+import controller.HibernateUtil;
 import entityModels.Employee;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
