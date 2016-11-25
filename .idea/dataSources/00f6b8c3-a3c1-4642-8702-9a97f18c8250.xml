@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="MySQL - sql7145733@sql7.freemysqlhosting.net">
+  <database-model serializer="dbm" rdbms="MYSQL" format-version="2.6">
+    <schema id="1" name="sql7145733">
+      <visible>1</visible>
+    </schema>
+    <schema id="2" name="information_schema"/>
+    <table id="3" parent="1" name="Employees"/>
+    <table id="4" parent="1" name="CUSTOMER"/>
+    <column id="5" parent="3" name="id">
+      <mandatory>1</mandatory>
+      <data-type>bigint(10)|0</data-type>
+      <sequence-identity>1</sequence-identity>
+    </column>
+    <column id="6" parent="3" name="firstname">
+      <data-type>varchar(50)|0</data-type>
+    </column>
+    <column id="7" parent="3" name="lastname">
+      <data-type>varchar(50)|0</data-type>
+    </column>
+    <column id="8" parent="3" name="birth_date">
+      <mandatory>1</mandatory>
+      <data-type>date|0</data-type>
+    </column>
+    <column id="9" parent="3" name="cell_phone">
+      <mandatory>1</mandatory>
+      <data-type>varchar(15)|0</data-type>
+    </column>
+    <key id="10" parent="3" name="PRIMARY">
+      <columns>id</columns>
+      <primary>1</primary>
+    </key>
+    <column id="11" parent="4" name="CUST_ID">
+      <mandatory>1</mandatory>
+      <data-type>int(10) unsigned|0</data-type>
+      <sequence-identity>1</sequence-identity>
+    </column>
+    <column id="12" parent="4" name="NAME">
+      <mandatory>1</mandatory>
+      <data-type>varchar(100)|0</data-type>
+    </column>
+    <column id="13" parent="4" name="AGE">
+      <mandatory>1</mandatory>
+      <data-type>int(10) unsigned|0</data-type>
+    </column>
+    <key id="14" parent="4" name="PRIMARY">
+      <columns>CUST_ID</columns>
+      <primary>1</primary>
+    </key>
+  </database-model>
+</dataSource>
