@@ -7,169 +7,10 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <center>
       <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
         <tabs>
-          <Tab text="Generelt">
-               <content>
-                  <VBox alignment="TOP_CENTER">
-                     <children>
-                        <Label text="Brugere">
-                           <font>
-                              <Font size="24.0" />
-                           </font>
-                           <padding>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                           </padding>
-                        </Label>
-                        <HBox alignment="CENTER" prefHeight="56.0" prefWidth="1221.0" spacing="30.0">
-                           <children>
-                              <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="140.0" text="Opret Bruger" />
-                              <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="140.0" text="Fjern Bruger" />
-                           </children>
-                           <padding>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                           </padding>
-                        </HBox>
-                        <TableView prefHeight="258.0" prefWidth="1221.0">
-                          <columns>
-                            <TableColumn prefWidth="611.0" text="Brugernavn" />
-                            <TableColumn prefWidth="609.0" text="Adgangskode" />
-                          </columns>
-                        </TableView>
-                        <Label text="Mærkater">
-                           <padding>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                           </padding>
-                           <font>
-                              <Font size="24.0" />
-                           </font>
-                        </Label>
-                        <HBox alignment="CENTER" prefHeight="56.0" prefWidth="1221.0" spacing="30.0">
-                           <children>
-                              <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="140.0" text="Print" />
-                              <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="140.0" text="Clear" />
-                           </children>
-                           <padding>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                           </padding>
-                        </HBox>
-                        <ListView prefHeight="308.0" prefWidth="1221.0" />
-                     </children>
-                  </VBox>
-               </content>
-          </Tab>
-          <Tab text="Elever">
-               <content>
-                  <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
-                     <children>
-                        <Label text="Elever">
-                           <font>
-                              <Font size="24.0" />
-                           </font>
-                           <padding>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                           </padding>
-                        </Label>
-                        <HBox alignment="CENTER" prefHeight="60.0" prefWidth="1221.0" spacing="30.0">
-                           <children>
-                              <Region prefHeight="50.0" prefWidth="409.0" />
-                              <ComboBox prefWidth="150.0" promptText="Device" />
-                              <ComboBox prefWidth="150.0" promptText="Status" />
-                              <Region prefHeight="50.0" prefWidth="324.0" />
-                              <Button mnemonicParsing="false" text="Opryk" />
-                           </children>
-                           <VBox.margin>
-                              <Insets />
-                           </VBox.margin>
-                           <padding>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                           </padding>
-                        </HBox>
-                        <HBox alignment="CENTER" prefHeight="60.0" prefWidth="1221.0" spacing="30.0">
-                           <children>
-                              <TextField promptText="Navn" text="Fornavn" />
-                              <TextField text="Efternavn" />
-                              <ComboBox prefWidth="150.0" promptText="Klasse" />
-                              <TextField text="Serienummer" />
-                              <TextField text="Mail" />
-                              <Button mnemonicParsing="false" text="Søg" />
-                           </children>
-                           <padding>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                           </padding>
-                        </HBox>
-                        <TableView prefHeight="451.0" prefWidth="1221.0">
-                          <columns>
-                            <TableColumn prefWidth="105.0" text="Fornavn" />
-                            <TableColumn prefWidth="106.0" text="Efternavn" />
-                              <TableColumn prefWidth="51.0" text="Klasse" />
-                              <TableColumn prefWidth="89.0" text="Device" />
-                              <TableColumn prefWidth="115.0" text="Serienummer" />
-                              <TableColumn prefWidth="115.0" text="Mail/Id" />
-                              <TableColumn prefWidth="122.0" text="Adgangskode" />
-                              <TableColumn minWidth="0.0" prefWidth="171.0" text="???" />
-                              <TableColumn prefWidth="198.0" text="???" />
-                          </columns>
-                        </TableView>
-                     </children>
-                  </VBox>
-               </content>
-          </Tab>
-            <Tab text="Personale">
-               <content>
-                  <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
-                     <children>
-                        <Label text="Personale">
-                           <font>
-                              <Font size="24.0" />
-                           </font>
-                           <padding>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                           </padding>
-                        </Label>
-                        <HBox alignment="CENTER" prefHeight="60.0" prefWidth="1221.0" spacing="30.0">
-                           <children>
-                              <ComboBox prefWidth="150.0" promptText="Device" />
-                              <ComboBox prefWidth="150.0" promptText="Status" />
-                           </children>
-                           <padding>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                           </padding>
-                           <VBox.margin>
-                              <Insets />
-                           </VBox.margin>
-                        </HBox>
-                        <HBox alignment="CENTER" prefHeight="60.0" prefWidth="1221.0" spacing="30.0">
-                           <children>
-                              <TextField promptText="Navn" text="Fornavn" />
-                              <TextField text="Efternavn" />
-                              <TextField text="Serienummer" />
-                              <TextField text="Mail" />
-                              <Button mnemonicParsing="false" text="Søg" />
-                           </children>
-                           <padding>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                           </padding>
-                        </HBox>
-                        <TableView prefHeight="451.0" prefWidth="1221.0">
-                           <columns>
-                              <TableColumn prefWidth="105.0" text="Fornavn" />
-                              <TableColumn prefWidth="106.0" text="Efternavn" />
-                              <TableColumn prefWidth="89.0" text="Device" />
-                              <TableColumn prefWidth="115.0" text="Serienummer" />
-                              <TableColumn prefWidth="115.0" text="Mail/Id" />
-                              <TableColumn prefWidth="122.0" text="Adgangskode" />
-                              <TableColumn minWidth="0.0" prefWidth="171.0" text="???" />
-                              <TableColumn prefWidth="294.0" text="???" />
-                           </columns>
-                        </TableView>
-                     </children>
-                  </VBox>
-               </content>
-            </Tab>
             <Tab text="Reparation">
                <content>
                   <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="5.0">
@@ -239,6 +80,182 @@
                   </VBox>
                </content>
             </Tab>
+          <Tab text="Elever">
+               <content>
+                  <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <Label text="Elever">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </padding>
+                        </Label>
+                        <HBox alignment="CENTER" prefHeight="60.0" prefWidth="1221.0" spacing="30.0">
+                           <children>
+                              <Region prefHeight="50.0" prefWidth="409.0" />
+                              <ComboBox prefWidth="150.0" promptText="Afsnit" />
+                              <ComboBox prefWidth="150.0" promptText="Status" />
+                              <Region prefHeight="50.0" prefWidth="324.0" />
+                              <Button mnemonicParsing="false" text="Opryk" />
+                           </children>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </padding>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="60.0" prefWidth="1221.0" spacing="30.0">
+                           <children>
+                              <TextField promptText="Fornavn" />
+                              <TextField promptText="Efternavn" />
+                              <ComboBox prefWidth="150.0" promptText="Klasse" />
+                              <TextField promptText="Serienummer" />
+                              <TextField promptText="Mail" />
+                              <Button mnemonicParsing="false" text="Søg" />
+                           </children>
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </padding>
+                        </HBox>
+                        <TableView prefHeight="396.0" prefWidth="1221.0">
+                          <columns>
+                            <TableColumn prefWidth="105.0" text="Fornavn" />
+                            <TableColumn prefWidth="106.0" text="Efternavn" />
+                              <TableColumn prefWidth="51.0" text="Klasse" />
+                              <TableColumn minWidth="0.0" prefWidth="75.70489501953125" text="Afsnit" />
+                              <TableColumn prefWidth="184.29513549804688" text="Device" />
+                              <TableColumn prefWidth="115.0" text="Serienummer" />
+                              <TableColumn prefWidth="115.0" text="Mail/Id" />
+                              <TableColumn prefWidth="122.0" text="Adgangskode" />
+                              <TableColumn prefWidth="198.0" text="???" />
+                          </columns>
+                        </TableView>
+                        <VBox alignment="TOP_CENTER" prefHeight="67.0" prefWidth="1221.0">
+                           <children>
+                              <Label text="Historik">
+                                 <padding>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </padding>
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <HBox alignment="CENTER" prefHeight="60.0" prefWidth="1221.0">
+                                 <children>
+                                    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#5ecd36" height="40.0" stroke="BLACK" strokeType="INSIDE" width="420.0" />
+                                 </children>
+                              </HBox>
+                              <AnchorPane prefHeight="0.0" prefWidth="1221.0">
+                                 <children>
+                                    <Label layoutX="379.0" layoutY="3.0" text="28/11-2016" />
+                                    <Label layoutX="819.0" layoutY="3.0" text="?" />
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </VBox>
+                     </children>
+                  </VBox>
+               </content>
+          </Tab>
+            <Tab text="Personale">
+               <content>
+                  <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <Label text="Personale">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </padding>
+                        </Label>
+                        <HBox alignment="CENTER" prefHeight="60.0" prefWidth="1221.0" spacing="30.0">
+                           <children>
+                              <ComboBox prefWidth="150.0" promptText="Device" />
+                              <ComboBox prefWidth="150.0" promptText="Status" />
+                           </children>
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </padding>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="60.0" prefWidth="1221.0" spacing="30.0">
+                           <children>
+                              <TextField promptText="Fornavn" />
+                              <TextField promptText="Efternavn" />
+                              <TextField promptText="Serienummer" />
+                              <TextField promptText="Mail" />
+                              <Button mnemonicParsing="false" text="Søg" />
+                           </children>
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </padding>
+                        </HBox>
+                        <TableView prefHeight="451.0" prefWidth="1221.0">
+                           <columns>
+                              <TableColumn prefWidth="105.0" text="Fornavn" />
+                              <TableColumn prefWidth="106.0" text="Efternavn" />
+                              <TableColumn prefWidth="89.0" text="Device" />
+                              <TableColumn prefWidth="115.0" text="Serienummer" />
+                              <TableColumn prefWidth="115.0" text="Mail/Id" />
+                              <TableColumn prefWidth="122.0" text="Adgangskode" />
+                              <TableColumn minWidth="0.0" prefWidth="171.0" text="???" />
+                              <TableColumn prefWidth="294.0" text="???" />
+                           </columns>
+                        </TableView>
+                     </children>
+                  </VBox>
+               </content>
+            </Tab>
+            <Tab text="Devices">
+               <content>
+                  <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <Label text="Devices">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </padding>
+                        </Label>
+                        <HBox alignment="CENTER" prefHeight="60.0" prefWidth="1221.0" spacing="30.0">
+                           <children>
+                              <ComboBox prefWidth="150.0" promptText="Device" />
+                              <ComboBox prefWidth="150.0" promptText="Status" />
+                           </children>
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </padding>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="60.0" prefWidth="1221.0" spacing="30.0">
+                           <children>
+                              <TextField promptText="Serienummer" />
+                              <Button mnemonicParsing="false" text="Søg" />
+                           </children>
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </padding>
+                        </HBox>
+                        <TableView prefHeight="451.0" prefWidth="1221.0">
+                           <columns>
+                              <TableColumn prefWidth="500.55355697870255" text="Device" />
+                              <TableColumn prefWidth="548.4464645385742" text="Serienummer" />
+                              <TableColumn minWidth="0.0" prefWidth="172.5498046875" text="Status" />
+                           </columns>
+                        </TableView>
+                     </children>
+                  </VBox>
+               </content>
+            </Tab>
             <Tab text="Opgaver">
                <content>
                   <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="5.0">
@@ -264,6 +281,55 @@
                   </VBox>
                </content>
             </Tab>
+          <Tab text="Generelt">
+               <content>
+                  <VBox alignment="TOP_CENTER">
+                     <children>
+                        <Label text="Brugere">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </padding>
+                        </Label>
+                        <HBox alignment="CENTER" prefHeight="56.0" prefWidth="1221.0" spacing="30.0">
+                           <children>
+                              <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="140.0" text="Opret Bruger" />
+                              <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="140.0" text="Fjern Bruger" />
+                           </children>
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </padding>
+                        </HBox>
+                        <TableView prefHeight="258.0" prefWidth="1221.0">
+                          <columns>
+                            <TableColumn prefWidth="611.0" text="Brugernavn" />
+                            <TableColumn prefWidth="609.0" text="Adgangskode" />
+                          </columns>
+                        </TableView>
+                        <Label text="Mærkater">
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </padding>
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
+                        <HBox alignment="CENTER" prefHeight="56.0" prefWidth="1221.0" spacing="30.0">
+                           <children>
+                              <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="140.0" text="Print" />
+                              <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="140.0" text="Clear" />
+                           </children>
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </padding>
+                        </HBox>
+                        <ListView prefHeight="308.0" prefWidth="1221.0" />
+                     </children>
+                  </VBox>
+               </content>
+          </Tab>
         </tabs>
       </TabPane>
    </center>
