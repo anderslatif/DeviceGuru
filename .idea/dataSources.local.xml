@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="dataSourceStorageLocal">
-    <data-source name="MySQL - sql7145733@sql7.freemysqlhosting.net" uuid="00f6b8c3-a3c1-4642-8702-9a97f18c8250">
+    <data-source name="MySQL - sql7145733@sql7.freemysqlhosting.net" uuid="0c485649-9ac0-4943-ac52-dd67682bef8e">
       <database-info product="MySQL" version="5.5.49-0ubuntu0.14.04.1" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.35 ( Revision: 5fb9c5849535c13917c2cf9baaece6ef9693ef27 )">
         <extra-name-characters>#@</extra-name-characters>
         <identifier-quote-string>`</identifier-quote-string>

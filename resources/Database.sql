@@ -8,15 +8,15 @@ Port number: 3306
 
 DROP SCHEMA IF EXISTS `sql7145733`;
 CREATE SCHEMA IF NOT EXISTS `sql7145733` DEFAULT CHARACTER SET utf8 ;
-USE `sql7145733` ;
+USE `sql7145733`;
 -- -----------------------------------------------------
 -- Table `sql7145733`.`devicelogins`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `sql7145733`.`devicelogins` ;
 
 CREATE TABLE IF NOT EXISTS `sql7145733`.`devicelogins` (
-  `email` VARCHAR(30) NOT NULL,
-  `password` VARCHAR(20) NULL,
+  `email` VARCHAR(40) NOT NULL,
+  `password` VARCHAR(100) NULL,
   PRIMARY KEY (`email`)
 );
 
