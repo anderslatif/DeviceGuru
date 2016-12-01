@@ -1,5 +1,14 @@
 package javaFX;
 
+import static java.util.ResourceBundle.*;
+
+import java.io.IOException;
+import java.net.URL;
+import java.util.MissingResourceException;
+import java.util.ResourceBundle;
+import java.util.concurrent.CompletableFuture;
+import java.util.function.Consumer;
+
 import javafx.application.Platform;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
@@ -9,18 +18,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.layout.AnchorPane;
+
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
-
-import java.io.IOException;
-import java.net.URL;
-import java.util.MissingResourceException;
-import java.util.ResourceBundle;
-import java.util.concurrent.CompletableFuture;
-import java.util.function.Consumer;
-
-import static java.util.ResourceBundle.getBundle;
 
 /**
  * This class is derived from Adam Bien's <a href="http://afterburner.adam-bien.com/">afterburner.fx</a> project.

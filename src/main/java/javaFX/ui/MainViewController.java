@@ -1,15 +1,17 @@
 package javaFX.ui;
 
 import javaFX.models.Student.Student;
-import javaFX.models.Student.StudentService;
 import javafx.beans.value.ChangeListener;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+
 import javafx.scene.text.Text;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import javaFX.models.Student.StudentService;
 
 @Component
 public class MainViewController {
@@ -24,12 +26,13 @@ public class MainViewController {
 
 
 	@Autowired
-    StudentService studentService;
+	StudentService studentService;
 
 	@FXML
 	public void initialize() {
 
-		text.setText(studentService.findAllStudents().get(0).toString());
+		System.out.println("AAAAAAAAAAA" + studentService.findAllStudents().size());
+//		text.setText(studentService.findAllStudents().get(0).toString());
 
 
 

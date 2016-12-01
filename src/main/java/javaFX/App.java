@@ -1,12 +1,15 @@
 package javaFX;
 
-import javaFX.ui.ProjectsView;
+import com.sun.javafx.application.LauncherImpl;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Lazy;
+
+import javaFX.ui.ProjectsView;
 
 @Lazy
 @SpringBootApplication
@@ -15,8 +18,7 @@ public class App extends AbstractJavaFxApplicationSupport {
 	@Value("JavaFX with JPA")
 	private String windowTitle;
 
-	@Autowired
-    ProjectsView projectsView;
+	@Autowired ProjectsView projectsView;
 
 	@Override
 	public void start(Stage stage) throws Exception {

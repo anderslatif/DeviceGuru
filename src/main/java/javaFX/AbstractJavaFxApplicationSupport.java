@@ -1,6 +1,7 @@
 package javaFX;
 
 import javafx.application.Application;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 
