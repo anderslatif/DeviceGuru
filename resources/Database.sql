@@ -74,7 +74,7 @@ CREATE TABLE IF NOT EXISTS `sql7145733`.`personel` (
   `firstname` VARCHAR(30) NOT NULL,
   `lastname` VARCHAR(45) NOT NULL,
   `device` VARCHAR(30) NOT NULL,
-  `email` VARCHAR(30) NOT NULL,
+  `email` VARCHAR(60) NOT NULL,
   INDEX `device_idx` (`device` ASC),
   INDEX `email_idx` (`email` ASC),
   PRIMARY KEY (`email`),
@@ -91,11 +91,11 @@ CREATE TABLE IF NOT EXISTS `sql7145733`.`repairs` (
   `device` VARCHAR(30) NOT NULL,
   `owner` VARCHAR(30) NOT NULL,
   `ticketid` INT,
-  `status` VARCHAR(15) NOT NULL,
+  `status` INT NOT NULL,
   PRIMARY KEY (`ticketid`),
     FOREIGN KEY (`device`) REFERENCES devices(`serialnumber`),
-    FOREIGN KEY (`owner`) REFERENCES students(`email`),
-    FOREIGN KEY (`owner`) REFERENCES personel(`email`)
+    FOREIGN KEY (`owner`) REFERENCES students(`email`)
+#  ,   FOREIGN KEY (`owner`) REFERENCES personel(`email`)
 );
 
 -- -----------------------------------------------------
@@ -104,8 +104,8 @@ CREATE TABLE IF NOT EXISTS `sql7145733`.`repairs` (
 DROP TABLE IF EXISTS `sql7145733`.`logins` ;
 
 CREATE TABLE IF NOT EXISTS `sql7145733`.`logins` (
-  `username` VARCHAR(20) NOT NULL,
-  `password` VARCHAR(20) NOT NULL,
+  `username` VARCHAR(40) NOT NULL,
+  `password` VARCHAR(40) NOT NULL,
   PRIMARY KEY (`username`)
 );
 
@@ -116,7 +116,7 @@ DROP TABLE IF EXISTS `sql7145733`.`assignments` ;
 
 CREATE TABLE IF NOT EXISTS `sql7145733`.`assignments` (
   `assignment` VARCHAR(100) NOT NULL,
-  `owner` VARCHAR(20) NOT NULL,
+  `owner` VARCHAR(40) NOT NULL,
   `id` INT NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`id`),
   FOREIGN KEY (`owner`) REFERENCES logins(`username`)
@@ -135,7 +135,7 @@ CREATE TABLE IF NOT EXISTS `sql7145733`.`devicehistory` (
   `enddate`   DATE,
   PRIMARY KEY (`email`),
   FOREIGN KEY (`email`) REFERENCES students (`email`),
-  FOREIGN KEY (`email`) REFERENCES personel (`email`),
+#   FOREIGN KEY (`email`) REFERENCES personel (`email`),
   FOREIGN KEY (`device`) REFERENCES devices (`serialnumber`)
 );
 
