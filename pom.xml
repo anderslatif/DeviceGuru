@@ -9,12 +9,37 @@
 
 
     <properties>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
+        <student.build.sourceEncoding>UTF-8</student.build.sourceEncoding>
+        <start-class>javaFX.App</start-class>
+        <java.version>1.8</java.version>
+        <lombok.version>1.16.2</lombok.version>
     </properties>
 
 
     <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+
 
         <dependency>
             <groupId>junit</groupId>
@@ -30,7 +55,7 @@
         </dependency>
 
 
-        <!-- For getting bean through application context -->
+       <!-- &lt;!&ndash; For getting bean through application context &ndash;&gt;
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
@@ -42,14 +67,14 @@
             <version>1.7.5</version>
         </dependency>
 
-        <!-- MySQL database driver -->
+        &lt;!&ndash; MySQL database driver &ndash;&gt;
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <version>5.1.9</version>
         </dependency>
 
-        <!-- Hibernate framework -->
+        &lt;!&ndash; Hibernate framework &ndash;&gt;
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate</artifactId>
@@ -63,7 +88,7 @@
         </dependency>
 
 
-        <!-- Hibernate annotation -->
+        &lt;!&ndash; Hibernate annotation &ndash;&gt;
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-annotations</artifactId>
@@ -71,7 +96,7 @@
         </dependency>
 
 
-        <!-- Hibernate library dependecy start -->
+        &lt;!&ndash; Hibernate library dependecy start &ndash;&gt;
         <dependency>
             <groupId>dom4j</groupId>
             <artifactId>dom4j</artifactId>
@@ -95,7 +120,7 @@
             <artifactId>cglib</artifactId>
             <version>2.2</version>
         </dependency>
-        <!-- Hibernate library dependecy end -->
+        &lt;!&ndash; Hibernate library dependecy end &ndash;&gt;
 
         <dependency>
             <groupId>javax.transaction</groupId>
@@ -136,27 +161,22 @@
             <groupId>org.springframework.data</groupId>
             <artifactId>spring-data-jpa</artifactId>
             <version>1.0.0.RELEASE</version>
-        </dependency>
+        </dependency>-->
+
+
     </dependencies>
 
 
 
-
-
-<build>
-    <resources>
-        <resource>
-            <directory>src/main/java</directory>
-            <includes>
-                <include>**/*.fxml</include>
-            </includes>
-        </resource>
-    </resources>
-
-
-        <plugins>
+    <build>
+<!--        <plugins>
             <plugin>
-                <!-- Build an executable JAR -->
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+
+            <plugin>
+                &lt;!&ndash; Build an executable JAR &ndash;&gt;
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
                 <version>3.0.2</version>
@@ -170,8 +190,37 @@
                     </archive>
                 </configuration>
             </plugin>
-        </plugins>
-</build>
+
+        </plugins>-->
+
+        <resources>
+            <!-- javaFX fxml and css resources -->
+            <resource>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**/*.fxml</include>
+                    <include>**/*.css</include>
+                    <include>**/*.properties</include>
+                </includes>
+            </resource>
+            <resource>
+                <directory>src/test/java</directory>
+                <includes>
+                    <include>**/*.fxml</include>
+                    <include>**/*.css</include>
+                    <include>**/*.properties</include>
+                </includes>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>**/*.*</include>
+                </includes>
+            </resource>
+        </resources>
+    </build>
+
+
 
 
 
