@@ -19,3 +19,5 @@ tasks.xml
 .idea/*
 target/*
 target/
+
+*.iml
