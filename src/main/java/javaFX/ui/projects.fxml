@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="169.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javaFX.ui.MainViewController">
+	<children>
+		<TableView fx:id="studentsTable" prefHeight="169.0" prefWidth="666.0">
+			<columns>
+				<TableColumn fx:id="idColumn" prefWidth="75.0" text="Id" />
+				<TableColumn fx:id="firstnameColumn" prefWidth="117.0" text="First name" />
+            <TableColumn fx:id="lastnameColumn" prefWidth="117.0" text="Last name" />
+			</columns>
+		</TableView>
+      <Text fx:id="text" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="335.13671875">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+	</children>
+</VBox>
