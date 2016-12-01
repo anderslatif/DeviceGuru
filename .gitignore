@@ -14,3 +14,5 @@ hs_err_pid*
 #Project
 workspace.xml
 tasks.xml
+
+.idea/*
