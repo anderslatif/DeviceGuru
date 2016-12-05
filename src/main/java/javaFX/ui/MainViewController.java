@@ -1,6 +1,9 @@
 package javaFX.ui;
 
-import javaFX.models.Student.Student;
+import javaFX.models.Assignment.Assignment;
+import javaFX.models.Assignment.AssignmentService;
+import javaFX.models.Login.Login;
+import javaFX.models.Login.LoginService;
 import javafx.beans.value.ChangeListener;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
@@ -11,41 +14,54 @@ import javafx.scene.text.Text;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import javaFX.models.Student.StudentService;
 
 @Component
 public class MainViewController {
 
-	@FXML TableView<Student> studentsTable;
 
-	@FXML TableColumn<Student, String> idColumn;
-	@FXML TableColumn<Student, String> firstnameColumn;
-	@FXML TableColumn<Student, String> lastnameColumn;
+	@Autowired
+	LoginService loginService;
+
+
+	@FXML
+	public void initialize() {
+
+
+		System.out.println("OOOOOOOOOOOOOOOOOOOOOOOOOOOO         " + loginService.findAllLogins().size());
+	}
+
+
+
+/*	@FXML TableView<Assignment> studentsTable;
+
+	@FXML TableColumn<Assignment, String> idColumn;
+	@FXML TableColumn<Assignment, String> firstnameColumn;
+	@FXML TableColumn<Assignment, String> lastnameColumn;
 
 	@FXML Text text;
 
 
 	@Autowired
-	StudentService studentService;
+	LoginService studentService;
 
 	@FXML
 	public void initialize() {
 
-		System.out.println("AAAAAAAAAAA" + studentService.findAllStudents().size());
-//		text.setText(studentService.findAllStudents().get(0).toString());
+		System.out.println("AAAAAAAAAAA" + studentService.findAllAssignments().size());
+//		text.setText(studentService.findAllAssignments().get(0).toString());
 
 
 
-		studentService.save(new Student("Wrong", "DB"));
+		studentService.save(new Assignment("Wrong", "DB"));
 
-		for (Student s : studentService.findAllStudents()) {
+		for (Assignment s : studentService.findAllAssignments()) {
 			System.out.println(s.toString());
 		}
 
 		configureProjectsTable();
 
 
-		for (Student student : studentService.findAllStudents()) {
+		for (Assignment student : studentService.findAllAssignments()) {
 			studentsTable.getItems().add(student);
 		}
 		studentsTable.getSelectionModel().selectFirst();
@@ -55,14 +71,17 @@ public class MainViewController {
 
 	private void configureProjectsTable() {
 
-		idColumn.setCellValueFactory(new PropertyValueFactory<Student, String>("firstname"));
-		firstnameColumn.setCellValueFactory(new PropertyValueFactory<Student, String>("lastname"));
-		lastnameColumn.setCellValueFactory(new PropertyValueFactory<Student, String>("lastname"));
+		idColumn.setCellValueFactory(new PropertyValueFactory<Assignment, String>("firstname"));
+		firstnameColumn.setCellValueFactory(new PropertyValueFactory<Assignment, String>("lastname"));
+		lastnameColumn.setCellValueFactory(new PropertyValueFactory<Assignment, String>("lastname"));
 
-		ChangeListener<Student> studentSelectionChange = (observable, oldValue, newValue) -> {
+		ChangeListener<Assignment> studentSelectionChange = (observable, oldValue, newValue) -> {
 			System.out.println("new click");
 		};
 
 		studentsTable.getSelectionModel().selectedItemProperty().addListener(studentSelectionChange);
-	}
+	}*/
+
+
+
 }

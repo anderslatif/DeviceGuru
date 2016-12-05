@@ -19,7 +19,7 @@
 	</parent>
 
 	<properties>
-		<student.build.sourceEncoding>UTF-8</student.build.sourceEncoding>
+		<assignment.build.sourceEncoding>UTF-8</assignment.build.sourceEncoding>
 		<start-class>javaFX.App</start-class>
 		<java.version>1.8</java.version>
 		<lombok.version>1.16.2</lombok.version>

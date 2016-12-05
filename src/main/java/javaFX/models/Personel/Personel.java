@@ -1,25 +1,21 @@
-package javaFX.models.Student;
-
-import javax.persistence.*;
+package javaFX.models.Personel;
 
 import javaFX.models.Device.Device;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.*;
 import java.util.List;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name="students")
-public class Student {
+@Table(name="personel")
+public class Personel {
 
 
-	@OneToOne
-	@Column(name="email")
-	private String email;
 
 	@Column(name="firstname")
 	private String firstName;
@@ -28,11 +24,16 @@ public class Student {
 	private String lastName;
 
 	@OneToOne
+	@Column(name="email")
+	private String email;
+
+	@OneToOne
 	@Column(name="class")
 	private String schoolClass;
 
 	@OneToMany
 	private List<Device> devices;
+
 
 
 }
