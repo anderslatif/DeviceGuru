@@ -23,13 +23,9 @@ public class Repair {
 	@Column(name="status")
 	private String status;
 
-//	@OneToOne
-//	@JoinColumn(name="email")
 	@Column(name="owner")
 	private String owner;
 
-//	@OneToOne
-//	@JoinColumn(name="serialnumber")
 	@Column(name="device")
 	private String device;
 

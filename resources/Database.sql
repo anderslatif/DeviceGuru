@@ -12,7 +12,7 @@ USE `deviceguru`;
 -- -----------------------------------------------------
 -- Table `deviceguru`.`devicelogins`
 -- -----------------------------------------------------
-/*DROP TABLE IF EXISTS `deviceguru`.`devicelogins` ;
+DROP TABLE IF EXISTS `deviceguru`.`devicelogins` ;
 
 CREATE TABLE IF NOT EXISTS `devicelogins` (
   `email` VARCHAR(40) NOT NULL,
@@ -59,7 +59,6 @@ CREATE TABLE IF NOT EXISTS `students` (
   FOREIGN KEY (`email`) REFERENCES devicelogins(`email`),
   FOREIGN KEY (`device`) REFERENCES devices(`serialnumber`),
   FOREIGN KEY (`class`) REFERENCES classes(`class`)
-
 );
 
 -- -----------------------------------------------------
@@ -91,7 +90,7 @@ CREATE TABLE IF NOT EXISTS `repairs` (
     FOREIGN KEY (`device`) REFERENCES devices(`serialnumber`),
     FOREIGN KEY (`owner`) REFERENCES students(`email`)
 #  ,   FOREIGN KEY (`owner`) REFERENCES personel(`email`)
-);*/
+);
 
 -- -----------------------------------------------------
 -- Table `sql7145733`.`logins`
@@ -107,20 +106,20 @@ CREATE TABLE IF NOT EXISTS `logins` (
 -- -----------------------------------------------------
 -- Table `sql7145733`.`assignments`
 -- -----------------------------------------------------
-/*DROP TABLE IF EXISTS `deviceguru`.`assignments` ;
+DROP TABLE IF EXISTS `deviceguru`.`assignments` ;
 
 CREATE TABLE IF NOT EXISTS `assignments` (
-  `assignment` (10000) NOT NULL,
+  `assignment` TEXT NOT NULL,
   `owner` VARCHAR(40) NOT NULL,
   `id` INT NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`id`),
   FOREIGN KEY (`owner`) REFERENCES logins(`username`)
-);*/
+);
 
 -- -----------------------------------------------------
 -- Table `sql7145733`.`devicehistory`
 -- -----------------------------------------------------
-/*DROP TABLE IF EXISTS `deviceguru`.`devicehistory` ;
+DROP TABLE IF EXISTS `deviceguru`.`devicehistory` ;
 
 CREATE TABLE IF NOT EXISTS `devicehistory` (
   `email`     VARCHAR(30) NOT NULL,
@@ -131,7 +130,7 @@ CREATE TABLE IF NOT EXISTS `devicehistory` (
   FOREIGN KEY (`email`) REFERENCES students (`email`),
 #   FOREIGN KEY (`email`) REFERENCES personel (`email`),
   FOREIGN KEY (`device`) REFERENCES devices (`serialnumber`)
-);*/
+);
 
 
 

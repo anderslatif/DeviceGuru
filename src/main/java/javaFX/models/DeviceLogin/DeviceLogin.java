@@ -14,7 +14,6 @@ import lombok.NoArgsConstructor;
 public class DeviceLogin {
 
 	@Id
-	//@OneToOne
 	@Column(name="email")
 	private String email;
 

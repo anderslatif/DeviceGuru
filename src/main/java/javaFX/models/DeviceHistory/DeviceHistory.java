@@ -16,20 +16,12 @@ import java.util.List;
 @Table(name="devicehistory")
 public class DeviceHistory {
 
-
-//	@OneToOne
 	@Id
 	@Column(name="email")
 	private String email;
 
-
-//	@JoinColumn(name="serialnumber")
 	@Column(name="device")
 	private String device;
-
-	//	@OneToMany
-//	private List<Device> devices;
-
 
 	@Temporal(TemporalType.DATE)
 	@Column(name="startdate")
@@ -39,10 +31,8 @@ public class DeviceHistory {
 	@Column(name="enddate")
 	private Date enddate;
 
-//	@OneToOne
 	@Column(name="class")
 	private String schoolClass;
-
 
 
 

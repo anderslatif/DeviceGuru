@@ -22,10 +22,10 @@ public class Assignment {
 	@Column(name="assignment")
 	private String assignment;
 
-	//@ManyToOne
-//	@JoinColumn(name="owner")
-	@Column(name="owner")
-	private String owner;
+	@ManyToOne
+	@JoinColumn(name="owner")
+	private Login owner;
+
 
 
 }

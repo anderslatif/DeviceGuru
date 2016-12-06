@@ -27,7 +27,6 @@ public class Personel {
 	@Column(name="lastname")
 	private String lastName;
 
-	//@OneToOne
 	@Column(name="class")
 	private String schoolClass;
 

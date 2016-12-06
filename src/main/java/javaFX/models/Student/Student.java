@@ -17,7 +17,6 @@ import java.util.List;
 public class Student {
 
 	@Id
-//	@OneToOne
 	@Column(name="email")
 	private String email;
 
@@ -27,16 +26,12 @@ public class Student {
 	@Column(name="lastname")
 	private String lastName;
 
-//	@OneToOne
 	@Column(name="class")
 	private String schoolClass;
 
 	@Column(name="device")
 	private String device;
 
-
-//	@OneToMany
-//	private List<Device> devices;
 
 
 }
