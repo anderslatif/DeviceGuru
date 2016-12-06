@@ -16,8 +16,8 @@ import java.util.List;
 @Table(name="students")
 public class Student {
 
-
-	@OneToOne
+	@Id
+//	@OneToOne
 	@Column(name="email")
 	private String email;
 
@@ -27,12 +27,16 @@ public class Student {
 	@Column(name="lastname")
 	private String lastName;
 
-	@OneToOne
+//	@OneToOne
 	@Column(name="class")
 	private String schoolClass;
 
-	@OneToMany
-	private List<Device> devices;
+	@Column(name="device")
+	private String device;
+
+
+//	@OneToMany
+//	private List<Device> devices;
 
 
 }

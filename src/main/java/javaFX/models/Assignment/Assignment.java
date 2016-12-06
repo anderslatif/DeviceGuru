@@ -24,8 +24,8 @@ public class Assignment {
 
 	//@ManyToOne
 //	@JoinColumn(name="owner")
-	@Column
-	private Login login;
+	@Column(name="owner")
+	private String owner;
 
 
 }

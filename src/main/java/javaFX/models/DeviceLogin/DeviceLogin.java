@@ -13,7 +13,8 @@ import lombok.NoArgsConstructor;
 @Table(name="devicelogin")
 public class DeviceLogin {
 
-	@OneToOne
+	@Id
+	//@OneToOne
 	@Column(name="email")
 	private String email;
 

@@ -1,7 +1,5 @@
 package javaFX.ui;
 
-import javaFX.models.Assignment.Assignment;
-import javaFX.models.Assignment.AssignmentService;
 import javaFX.models.Login.Login;
 import javaFX.models.Login.LoginService;
 import javafx.beans.value.ChangeListener;
@@ -19,15 +17,15 @@ import org.springframework.stereotype.Component;
 public class MainViewController {
 
 
-	@Autowired
-	LoginService loginService;
+//	@Autowired
+//	LoginService loginService;
 
 
 	@FXML
 	public void initialize() {
 
 
-		System.out.println("OOOOOOOOOOOOOOOOOOOOOOOOOOOO         " + loginService.findAllLogins().size());
+	//	System.out.println("OOOOOOOOOOOOOOOOOOOOOOOOOOOO         " + loginService.findAllLogins().size());
 	}
 
 

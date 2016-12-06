@@ -13,8 +13,10 @@ import javax.persistence.*;
 @Table(name="devices")
 public class Device {
 
-    @ManyToOne
-    @JoinColumn(name="serialnumber")
+//    @ManyToOne
+//    @JoinColumn(name="serialnumber")
+    @Id
+    @Column(name="serialnumber")
     private String serialnumber;
 
     @Column(name="type")

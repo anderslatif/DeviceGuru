@@ -16,6 +16,10 @@ import java.util.List;
 public class Personel {
 
 
+//	@OneToOne
+	@Id
+	@Column(name="email")
+	private String email;
 
 	@Column(name="firstname")
 	private String firstName;
@@ -23,11 +27,7 @@ public class Personel {
 	@Column(name="lastname")
 	private String lastName;
 
-	@OneToOne
-	@Column(name="email")
-	private String email;
-
-	@OneToOne
+	//@OneToOne
 	@Column(name="class")
 	private String schoolClass;
 

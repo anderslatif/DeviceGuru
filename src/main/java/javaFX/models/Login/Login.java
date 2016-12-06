@@ -1,6 +1,5 @@
 package javaFX.models.Login;
 
-import javaFX.models.Assignment.Assignment;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -22,9 +21,11 @@ public class Login {
     @Column(name="password")
     private String password;
 
-//    @OneToMany
+
+
+/*//    @OneToMany
     @Column
-    private List<Assignment> assignments;
+    private List<Assignment> assignments;*/
 
 
 

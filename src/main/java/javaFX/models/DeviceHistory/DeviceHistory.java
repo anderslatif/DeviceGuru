@@ -17,14 +17,19 @@ import java.util.List;
 public class DeviceHistory {
 
 
-	@OneToOne
+//	@OneToOne
+	@Id
 	@Column(name="email")
 	private String email;
 
-	@ManyToOne
-	@JoinColumn(name="serialnumber")
+
+//	@JoinColumn(name="serialnumber")
 	@Column(name="device")
 	private String device;
+
+	//	@OneToMany
+//	private List<Device> devices;
+
 
 	@Temporal(TemporalType.DATE)
 	@Column(name="startdate")
@@ -34,12 +39,11 @@ public class DeviceHistory {
 	@Column(name="enddate")
 	private Date enddate;
 
-	@OneToOne
+//	@OneToOne
 	@Column(name="class")
 	private String schoolClass;
 
-	@OneToMany
-	private List<Device> devices;
+
 
 
 }

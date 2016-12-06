@@ -13,8 +13,9 @@ import javax.persistence.*;
 @Table(name="classes")
 public class Classes {
 
-    @OneToOne
-    @JoinColumn(name="class")
+//    @OneToOne
+//    @JoinColumn(name="class")
+    @Id
     private String schoolClass;  // class is a reserved keyword in Java
 
 
