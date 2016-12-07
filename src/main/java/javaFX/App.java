@@ -1,6 +1,6 @@
 package javaFX;
 
-import com.sun.javafx.application.LauncherImpl;
+import javaFX.ui.LoginView;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
@@ -9,22 +9,23 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Lazy;
 
-import javaFX.ui.ProjectsView;
-
 @Lazy
 @SpringBootApplication
 public class App extends AbstractJavaFxApplicationSupport {
 
-	@Value("JavaFX with JPA")
+	@Value("DeviceGuru")
 	private String windowTitle;
 
-	@Autowired ProjectsView projectsView;
+	@Autowired
+	LoginView loginView;
 
 	@Override
 	public void start(Stage stage) throws Exception {
 
+		this.stage = stage;
+
 		stage.setTitle(windowTitle);
-		stage.setScene(new Scene(projectsView.getView()));
+		stage.setScene(new Scene(loginView.getView()));
 		stage.setResizable(true);
 		stage.centerOnScreen();
 		stage.show();
@@ -34,4 +35,10 @@ public class App extends AbstractJavaFxApplicationSupport {
 		launchApp(App.class, args);
 	}
 
+
+	static Stage stage;
+
+	public static Stage getStage() {
+		return stage;
+	}
 }

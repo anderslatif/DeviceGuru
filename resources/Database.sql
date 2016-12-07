@@ -6,13 +6,13 @@ Password: hA5z3zymVW
 Port number: 3306
 */
 
-DROP SCHEMA IF EXISTS `deviceguru`;
-CREATE SCHEMA IF NOT EXISTS `deviceguru` DEFAULT CHARACTER SET utf8 ;
-USE `deviceguru`;
+DROP SCHEMA IF EXISTS `sql7147295`;
+CREATE SCHEMA IF NOT EXISTS `sql7147295` DEFAULT CHARACTER SET utf8 ;
+USE `sql7147295`;
 -- -----------------------------------------------------
--- Table `deviceguru`.`devicelogins`
+-- Table `sql7147295`.`devicelogins`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `deviceguru`.`devicelogins` ;
+DROP TABLE IF EXISTS `sql7147295`.`devicelogins` ;
 
 CREATE TABLE IF NOT EXISTS `devicelogins` (
   `email` VARCHAR(40) NOT NULL,
@@ -21,9 +21,9 @@ CREATE TABLE IF NOT EXISTS `devicelogins` (
 );
 
 -- -----------------------------------------------------
--- Table `deviceguru`.`devices`
+-- Table `sql7147295`.`devices`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `deviceguru`.`devices` ;
+DROP TABLE IF EXISTS `sql7147295`.`devices` ;
 
 CREATE TABLE IF NOT EXISTS `devices` (
   `serialnumber` VARCHAR(30) NOT NULL,
@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS `devices` (
 -- -----------------------------------------------------
 -- Table `sql7145733`.`classes`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `deviceguru`.`classes` ;
+DROP TABLE IF EXISTS `sql7147295`.`classes` ;
 
 CREATE TABLE IF NOT EXISTS `classes` (
   `class` VARCHAR(5) NOT NULL,
@@ -47,7 +47,7 @@ CREATE TABLE IF NOT EXISTS `classes` (
 -- -----------------------------------------------------
 -- Table `sql7145733`.`students`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `deviceguru`.`students` ;
+DROP TABLE IF EXISTS `sql7147295`.`students` ;
 
 CREATE TABLE IF NOT EXISTS `students` (
   `firstname` VARCHAR(30) NOT NULL,
@@ -64,7 +64,7 @@ CREATE TABLE IF NOT EXISTS `students` (
 -- -----------------------------------------------------
 -- Table `sql7145733`.`personel`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `deviceguru`.`personel` ;
+DROP TABLE IF EXISTS `sql7147295`.`personel` ;
 
 CREATE TABLE IF NOT EXISTS `personel` (
   `firstname` VARCHAR(30) NOT NULL,
@@ -79,7 +79,7 @@ CREATE TABLE IF NOT EXISTS `personel` (
 -- -----------------------------------------------------
 -- Table `sql7145733`.`repairs`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `deviceguru`.`repairs` ;
+DROP TABLE IF EXISTS `sql7147295`.`repairs` ;
 
 CREATE TABLE IF NOT EXISTS `repairs` (
   `device` VARCHAR(30) NOT NULL,
@@ -95,7 +95,7 @@ CREATE TABLE IF NOT EXISTS `repairs` (
 -- -----------------------------------------------------
 -- Table `sql7145733`.`logins`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `deviceguru`.`logins` ;
+DROP TABLE IF EXISTS `sql7147295`.`logins` ;
 
 CREATE TABLE IF NOT EXISTS `logins` (
   `username` VARCHAR(40) NOT NULL,
@@ -106,7 +106,7 @@ CREATE TABLE IF NOT EXISTS `logins` (
 -- -----------------------------------------------------
 -- Table `sql7145733`.`assignments`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `deviceguru`.`assignments` ;
+DROP TABLE IF EXISTS `sql7147295`.`assignments` ;
 
 CREATE TABLE IF NOT EXISTS `assignments` (
   `assignment` TEXT NOT NULL,
@@ -119,7 +119,7 @@ CREATE TABLE IF NOT EXISTS `assignments` (
 -- -----------------------------------------------------
 -- Table `sql7145733`.`devicehistory`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `deviceguru`.`devicehistory` ;
+DROP TABLE IF EXISTS `sql7147295`.`devicehistory` ;
 
 CREATE TABLE IF NOT EXISTS `devicehistory` (
   `email`     VARCHAR(30) NOT NULL,

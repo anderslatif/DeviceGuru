@@ -1,43 +1,36 @@
 package javaFX.ui;
 
-import javaFX.models.Assignment.Assignment;
 import javaFX.models.Assignment.AssignmentService;
-import javaFX.models.Login.Login;
 import javaFX.models.Login.LoginService;
-import javafx.beans.value.ChangeListener;
 import javafx.fxml.FXML;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
-
-import javafx.scene.text.Text;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.HashMap;
 
 @Component
-public class MainViewController {
+public class StudentTabViewController {
+
+/*    private HashMap<String, Object> sesssion;
+
+    public StudentTabViewController(HashMap<String, Object> sesssion) {
+        this.sesssion = sesssion;
+    }*/
+
+    @Autowired
+    LoginService loginService;
 
 
-	@Autowired
-    AssignmentService loginService;
+    @FXML
+    public void initialize() {
 
 
-	@FXML
-	public void initialize() {
-
-//        loginService.findAllAssignments().forEach( a -> a.getOwner());
-
-//        for (Assignment login : loginService.findAllAssignments()) {
-//            login.getOwner();
-//        }
-      //  System.out.println("OOOOOOOOOOOOOOOOOOOOOOOOOOOO         " + loginService.findAllLogins().size());
-	//	System.out.println("OOOOOOOOOOOOOOOOOOOOOOOOOOOO         " + loginService.findAllLogins().get(0).getAssignments().toString());
-	}
+    }
 
 
 
-/*	@FXML TableView<Assignment> studentsTable;
+
+    /*	@FXML TableView<Assignment> studentsTable;
 
 	@FXML TableColumn<Assignment, String> idColumn;
 	@FXML TableColumn<Assignment, String> firstnameColumn;
@@ -86,6 +79,8 @@ public class MainViewController {
 
 		studentsTable.getSelectionModel().selectedItemProperty().addListener(studentSelectionChange);
 	}*/
+
+
 
 
 
