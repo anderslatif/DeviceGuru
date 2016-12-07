@@ -2,6 +2,7 @@ package javaFX.ui;
 
 import javaFX.models.Assignment.AssignmentService;
 import javaFX.models.Login.LoginService;
+import javaFX.models.Student.StudentService;
 import javafx.fxml.FXML;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -11,18 +12,22 @@ import java.util.HashMap;
 @Component
 public class StudentTabViewController {
 
-/*    private HashMap<String, Object> sesssion;
-
-    public StudentTabViewController(HashMap<String, Object> sesssion) {
-        this.sesssion = sesssion;
-    }*/
 
     @Autowired
-    LoginService loginService;
+    StudentService studentService;
 
 
     @FXML
     public void initialize() {
+
+        /**
+         * Hej Mikkel.. Dette er muligt at få fat i alle elever.. returnerer List<Student>
+         * Der er også et rodet eksempel nedenunder
+         */
+        studentService.findAllStudents();
+
+        // se output i konsolen!
+        studentService.findAllStudents().forEach( s -> System.out.println(s.toString()));
 
 
     }

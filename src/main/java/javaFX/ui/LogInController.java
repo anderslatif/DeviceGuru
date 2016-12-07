@@ -5,6 +5,7 @@ import javaFX.models.Assignment.Assignment;
 import javaFX.models.Assignment.AssignmentService;
 import javaFX.models.Login.Login;
 import javaFX.models.Login.LoginService;
+import javaFX.models.Student.StudentService;
 import javafx.beans.value.ChangeListener;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
@@ -37,10 +38,14 @@ public class LogInController {
 		loginbutton.setOnAction( e -> logInButtonClicked());
 	}
 
+
+
+
 	/**
 	 * This is the login authorization method
 	 */
 	private void logInButtonClicked() {
+
 
 		Stage stage = App.getStage();
 
@@ -50,10 +55,6 @@ public class LogInController {
 		stage.show();
 
 	}
-
-
-
-
 
 
 }

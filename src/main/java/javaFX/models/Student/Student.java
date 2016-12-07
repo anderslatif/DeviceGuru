@@ -17,6 +17,7 @@ import java.util.List;
 public class Student {
 
 	@Id
+	@GeneratedValue
 	@Column(name="email")
 	private String email;
 

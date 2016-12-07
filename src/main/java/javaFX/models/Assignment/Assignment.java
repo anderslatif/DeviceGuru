@@ -3,13 +3,13 @@ package javaFX.models.Assignment;
 import javax.persistence.*;
 
 import javaFX.models.Login.Login;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@EqualsAndHashCode(exclude={"owner"})
+@ToString(exclude={"owner"})
 @Entity
 @Table(name="assignments")
 public class Assignment {
