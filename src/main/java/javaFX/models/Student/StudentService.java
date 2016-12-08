@@ -7,10 +7,10 @@ import java.util.List;
 
 public interface StudentService {
 
-	List<Login> findAllStudents();
+	List<Student> findAllStudents();
 
 	@Transactional
-	Login save(Login login);
+	Student save(Student student);
 
 
 }

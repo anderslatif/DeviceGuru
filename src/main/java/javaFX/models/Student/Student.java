@@ -28,9 +28,10 @@ public class Student {
 	private String lastName;
 
 	@Column(name="class")
-	private String schoolClass;
+	private String schoolClass;  // class is a reserved keyword in Java
 
-	@Column(name="device")
+
+    @Column(name="device")
 	private String device;
 
 

@@ -24,16 +24,6 @@ CREATE TABLE IF NOT EXISTS `devices` (
 );
 
 
--- -----------------------------------------------------
--- Table `sql7145733`.`classes`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `deviceguru`.`classes` ;
-
-CREATE TABLE IF NOT EXISTS `classes` (
-  `class` VARCHAR(5) NOT NULL,
-  PRIMARY KEY (`class`)
-);
-
 
 
 -- -----------------------------------------------------
@@ -42,15 +32,15 @@ CREATE TABLE IF NOT EXISTS `classes` (
 DROP TABLE IF EXISTS `deviceguru`.`students` ;
 
 CREATE TABLE IF NOT EXISTS `students` (
-  `firstname` VARCHAR(30) NOT NULL,
-  `lastname`  VARCHAR(45) NOT NULL,
-  `class`     VARCHAR(5)  NOT NULL,
-  `device`    VARCHAR(30) NOT NULL,
-  `email`     VARCHAR(30) NOT NULL,
+  `firstname` VARCHAR(100) NOT NULL,
+  `lastname`  VARCHAR(100) NOT NULL,
+  `device`    VARCHAR(100) NOT NULL,
+  `email`     VARCHAR(200) NOT NULL,
+  `class`     VARCHAR(10) NOT NULL,
   PRIMARY KEY (`email`),
   FOREIGN KEY (`email`) REFERENCES devicelogins(`email`),
-  FOREIGN KEY (`device`) REFERENCES devices(`serialnumber`),
-  FOREIGN KEY (`class`) REFERENCES classes(`class`)
+  FOREIGN KEY (`device`) REFERENCES devices(`serialnumber`)
+
 );
 
 -- -----------------------------------------------------

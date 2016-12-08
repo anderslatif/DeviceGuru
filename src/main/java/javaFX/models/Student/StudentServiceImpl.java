@@ -16,12 +16,12 @@ class StudentServiceImpl implements StudentService {
 	private final StudentRepository studentRepository;
 
 	@Override
-	public List<Login> findAllStudents() {
+	public List<Student> findAllStudents() {
 		return studentRepository.findAll();
 	}
 
 	@Transactional
-	public Login save(Login login) {
-		return studentRepository.save(login);
+	public Student save(Student student) {
+		return studentRepository.save(student);
 	}
 }
