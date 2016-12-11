@@ -1,3 +1,4 @@
+USE `deviceguru`;
 
 
 INSERT INTO `devicelogins` (`email`, `password`) VALUES
