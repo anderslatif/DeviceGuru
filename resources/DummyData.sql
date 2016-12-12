@@ -1,6 +1,6 @@
 
 
-INSERT INTO `devicelogins` (`email`, `password`) VALUES
+INSERT INTO `deviceguru`.`devicelogins` (`email`, `password`) VALUES
   ('e@mail.com', 'password'),
   ('dui@dapibusgravidaAliquam.com', 'ghost123'),
   ('Fusce@etlacinia.org', 'secureLogin'),
