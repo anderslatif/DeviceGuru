@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 import java.util.HashMap;
 
 @Component
-public class StudentTabViewController {
+public class MainTabController {
 
 
     @Autowired
