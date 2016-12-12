@@ -66,7 +66,7 @@ DROP TABLE IF EXISTS `deviceguru`.`repairs` ;
 CREATE TABLE IF NOT EXISTS `repairs` (
   `device` VARCHAR(30) NOT NULL,
   `owner` VARCHAR(30) NOT NULL,
-  `ticketid` INT,
+  `ticketid` INT AUTO_INCREMENT,
   `status` VARCHAR(30) NOT NULL,
   PRIMARY KEY (`ticketid`),
     FOREIGN KEY (`device`) REFERENCES devices(`serialnumber`),

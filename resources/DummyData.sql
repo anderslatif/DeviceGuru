@@ -1,3 +1,4 @@
+USE `deviceguru`;
 
 
 INSERT INTO `deviceguru`.`devicelogins` (`email`, `password`) VALUES
