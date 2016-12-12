@@ -120,18 +120,7 @@
                                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                     </padding>
                                 </HBox>
-                                <TableView editable="true" prefHeight="396.0" prefWidth="1221.0">
-                                    <columns>
-                                        <TableColumn prefWidth="105.0" text="Fornavn" />
-                                        <TableColumn prefWidth="106.0" text="Efternavn" />
-                                        <TableColumn text="Klasse" />
-                                        <TableColumn minWidth="0.0" prefWidth="101.0" text="Afsnit" />
-                                        <TableColumn prefWidth="131.0" text="Device" />
-                                        <TableColumn prefWidth="205.0" text="Serienummer" />
-                                        <TableColumn prefWidth="239.0" text="Mail/Id" />
-                                        <TableColumn prefWidth="253.0" text="Adgangskode" />
-                                    </columns>
-                                </TableView>
+                                <TableView fx:id="studentTable" editable="true" prefHeight="396.0" prefWidth="1221.0" />
                                 <VBox alignment="TOP_CENTER" prefHeight="67.0" prefWidth="1221.0">
                                     <children>
                                         <Label text="Historik">
