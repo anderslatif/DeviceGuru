@@ -1,3 +1,4 @@
+/*
 package JpaTests;
 
 import javaFX.App;
@@ -14,9 +15,11 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
+*/
 /**
  * Tests of the entity class {@link javaFX.models.Student.Student}
- */
+ *//*
+
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = App.class)
 //@TestExecutionListeners({DependencyInjectionTestExecutionListener.class,
@@ -31,10 +34,12 @@ public class StudentRepositoryTest {
     @Autowired
     StudentService studentService;
 
-    /**
+    */
+/**
      * Add 3 students to an empty DB
      * Expect 3 students in DB
-     */
+     *//*
+
     @Test
     public void getAllStudentsTest() {
         studentService.save(new Student("email1", "firstname", "lastname", "2a", "34324325643"));
@@ -44,10 +49,12 @@ public class StudentRepositoryTest {
     }
 
 
-    /**
+    */
+/**
      * Allow input of special characters
      * Make sure that the characters are saved in the DB correctly and that we are able to get them without corruption
-     */
+     *//*
+
     @Test
     public void edgeCaseStudent() {
         studentService.save(new Student("øæå@mail.com", "()'%&", "!´?½§`", "-=+,<>", "sql SELECT * FROM students"));
@@ -60,12 +67,14 @@ public class StudentRepositoryTest {
         Assert.assertEquals(student.getDevice(), "sql SELECT * FROM students");
     }
 
-    /**
+    */
+/**
      * Emails must be unique in the DB.
      * If a new student with the same email is saved transactional will roll back and the student will not be added.
      * Therefore, only 1 student will be present in the database below
      * @throws Exception
-     */
+     *//*
+
     @Test
     public void ensureThatNonUniqueEmailsFail() {
         studentService.save(new Student("same@email", "firstname", "lastname", "2a", "34324325643"));
@@ -77,16 +86,18 @@ public class StudentRepositoryTest {
 
 
 
-    /**
+    */
+/**
      * The values below can't be null
      * Every single save attempt should fail
      * @throws Exception
-     */
+     *//*
+
     @Test
     public void failWithNullValues() {
 
         // It's possible to simply do this @Test(expected=JpaSystemException.class)
-        // but rather than expecting the exception in the scope of the method we expect it before each DB call
+        // but rather than expecting the exception in the scope of the entire method we expect it before each DB call
 
         exception.expect(JpaSystemException.class);
         studentService.save(new Student(null, "firstname", "lastname", "2a", "34324325643"));
@@ -112,3 +123,4 @@ public class StudentRepositoryTest {
 
 
 }
+*/

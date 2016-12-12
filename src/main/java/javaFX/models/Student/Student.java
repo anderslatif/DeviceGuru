@@ -3,6 +3,7 @@ package javaFX.models.Student;
 import javax.persistence.*;
 
 import javaFX.models.Device.Device;
+import javaFX.models.DeviceLogin.DeviceLogin;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -29,10 +30,12 @@ public class Student {
 	@Column(name="class")
 	private String schoolClass;  // class is a reserved keyword in Java
 
+	@OneToOne(fetch = FetchType.EAGER)
+	@PrimaryKeyJoinColumn
+	private DeviceLogin deviceLogin;
 
-    @Column(name="device")
-	private String device;
-
-
+	@OneToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name="device")
+	private Device device;
 
 }

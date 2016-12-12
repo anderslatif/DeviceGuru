@@ -10,15 +10,15 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name="devicelogin")
+@Table(name="devicelogins")
 public class DeviceLogin {
 
 	@Id
 	@Column(name="email")
 	private String email;
 
-	@Column(name="firstname")
-	private String firstName;
+	@Column(name="password")
+	private String password;
 
 
 }
