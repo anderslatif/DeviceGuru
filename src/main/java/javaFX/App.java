@@ -26,7 +26,6 @@ public class App extends AbstractJavaFxApplicationSupport {
 
 		stage.setTitle(windowTitle);
 		stage.setScene(new Scene(loginView.getView()));
-		stage.setResizable(true);
 		stage.centerOnScreen();
 		stage.show();
 	}

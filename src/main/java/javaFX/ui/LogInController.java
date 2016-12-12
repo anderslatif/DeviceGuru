@@ -40,7 +40,7 @@ public class LogInController {
 		Stage stage = App.getStage();
 
 		stage.setScene(new Scene(mainTabView.getView()));
-		stage.setResizable(true);
+		stage.setMaximized(true);
 		stage.centerOnScreen();
 		stage.show();
 
