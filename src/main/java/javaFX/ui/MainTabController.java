@@ -82,7 +82,7 @@ public class MainTabController {
 
         //creating firstNamecolumn
         TableColumn<Student, String> firstNameColumn = new TableColumn<>("Fornavn");
-        firstNameColumn.setMinWidth(200);
+        firstNameColumn.setMinWidth(150);
         firstNameColumn.setCellValueFactory(new PropertyValueFactory<>("firstName"));
         firstNameColumn.setCellFactory(TextFieldTableCell.forTableColumn());
 
@@ -112,7 +112,7 @@ public class MainTabController {
 
         //creating schoolclasscolumn
         TableColumn<Student, String> classColumn = new TableColumn<>("Klasse");
-        classColumn.setMinWidth(200);
+        classColumn.setMinWidth(50);
         classColumn.setCellValueFactory(new PropertyValueFactory<>("schoolClass"));
         classColumn.setCellFactory(TextFieldTableCell.forTableColumn());
 
