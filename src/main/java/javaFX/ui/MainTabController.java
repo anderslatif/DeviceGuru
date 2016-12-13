@@ -68,7 +68,7 @@ public class MainTabController {
 
         searchButton.setOnAction( e -> searchButtonClicked());
 
-
+        searchFieldOnKeyPress();
     }
 
 
@@ -223,6 +223,16 @@ public class MainTabController {
 
         studentTable.setItems(searchResultObsList);
     }
+
+
+    public void searchFieldOnKeyPress() {
+        firstNameTextField.setOnKeyReleased( e -> searchButtonClicked());
+        lastNameTextField.setOnKeyReleased( e -> searchButtonClicked());
+        schoolClassCombobox.setOnAction( e -> searchButtonClicked());
+        serialNumberTextField.setOnKeyReleased( e -> searchButtonClicked());
+        emailTextField.setOnKeyReleased( e -> searchButtonClicked());
+    }
+
 
 
 }
