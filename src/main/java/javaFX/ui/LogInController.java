@@ -2,11 +2,14 @@ package javaFX.ui;
 
 import javaFX.App;
 import javaFX.models.Login.LoginService;
+import javaFX.util.UserMessage;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 
+import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -34,7 +37,7 @@ public class LogInController {
 	private TextField username;
 
 	@FXML
-	private TextField password;
+	private PasswordField password;
 
 	@FXML
 	private Button loginbutton;
@@ -63,13 +66,15 @@ public class LogInController {
 				.anyMatch(login -> login.getUsername().equals(username.getText())&& login.getPassword().equals(password.getText()));
 
 		if (loginCheck) {
-
 			Stage stage = App.getStage();
 
 			stage.setScene(new Scene(mainTabView.getView()));
 			stage.setMaximized(true);
 			stage.centerOnScreen();
 			stage.show();
+		} else {
+			Label messageLabel = new Label("Wrong log in credentials");
+			rootBorderPane.setTop(messageLabel);
 		}
 	}
 
