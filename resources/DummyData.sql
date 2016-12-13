@@ -3,7 +3,7 @@ USE `deviceguru`;
 
 INSERT INTO `deviceguru`.`devicelogins` (`email`, `password`) VALUES
   ('e@mail.com', 'password'),
-  ('dui@dapibusgravidaAliquam.com', 'ghost123'),
+  ('admin', 'ghost123'),
   ('Fusce@etlacinia.org', 'secureLogin'),
   ('vel@vitaeerat.edu', 'MySweetHeaven'),
   ('metus.In@parturientmontesnascetur.ca', '34fdsfj45');
@@ -31,12 +31,12 @@ INSERT INTO `repairs` (`device`, `owner`, `ticketid`, `status`) VALUES
   ('3242480324', 'e@mail.com', DEFAULT, '1');
 
 INSERT INTO `logins`(`username`, `password`) VALUES
-  ('dui@dapibusgravidaAliquam.com','OTF91TGM8LH'),('Fusce@etlacinia.org','MEO76HWQ6OS'),('mattis@ac.org','WIM96CFI8XS');
+  ('admin','root'),('Fusce@etlacinia.org','MEO76HWQ6OS'),('mattis@ac.org','WIM96CFI8XS');
 
 INSERT INTO `assignments`(`assignment`, `owner`, `id`) VALUES
-  ('assignment text', 'dui@dapibusgravidaAliquam.com', DEFAULT),
-  ('assignment text', 'dui@dapibusgravidaAliquam.com', DEFAULT),
-  ('assignment text', 'dui@dapibusgravidaAliquam.com', DEFAULT),
+  ('assignment text', 'admin', DEFAULT),
+  ('assignment text', 'admin', DEFAULT),
+  ('assignment text', 'admin', DEFAULT),
   ('assignment text', 'Fusce@etlacinia.org', DEFAULT),
   ('assignment text', 'Fusce@etlacinia.org', DEFAULT),
   ('assignment text', 'mattis@ac.org', DEFAULT),
