@@ -68,7 +68,7 @@ public class StudentRepositoryTest {
         studentService.save(new Student("email1", "firstname", "lastname", "2a", new DeviceLogin("email1", "password"), new Device("serialnumber1", "type")));
         studentService.save(new Student("email2", "firstname", "lastname", "2a", new DeviceLogin("email2", "password"), new Device("serialnumber2", "type")));
         studentService.save(new Student("email3", "firstname", "lastname", "2a", new DeviceLogin("email3", "password"), new Device("serialnumber3", "type")));
-        Assert.assertEquals(studentService.findAllStudents().size(), 3);
+        Assert.assertEquals(studentService.findAll().size(), 3);
     }
 
 
@@ -80,7 +80,7 @@ public class StudentRepositoryTest {
     public void edgeCaseStudent() {
         studentService.save(new Student("øæå@mail.com", "()'%&", "!´?½§`", "-=+,<>", new DeviceLogin("sql SELECT * FROM students;", "password"), new Device("serialnumber1", "type")));
 
-        Student student = studentService.findAllStudents().get(0);
+        Student student = studentService.findAll().get(0);
         Assert.assertEquals(student.getEmail(), "øæå@mail.com");
         Assert.assertEquals(student.getFirstName(), "()'%&");
         Assert.assertEquals(student.getLastName(), "!´?½§`");
@@ -99,7 +99,7 @@ public class StudentRepositoryTest {
         studentService.save(new Student("same@email", "firstname", "lastname", "2a", new DeviceLogin("email1", "password"), new Device("serialnumber1", "type")));
         studentService.save(new Student("same@email", "firstname", "lastname", "2a", new DeviceLogin("email1", "password"), new Device("serialnumber1", "type")));
 
-        Assert.assertEquals(studentService.findAllStudents().size(), 1);
+        Assert.assertEquals(studentService.findAll().size(), 1);
 
     }
 
@@ -134,7 +134,7 @@ public class StudentRepositoryTest {
         exception.expect(JpaSystemException.class);
         studentService.save(new Student("same@email", "firstname", "lastname", "2a", new DeviceLogin("email1", "password"), null));
 
-        Assert.assertEquals(studentService.findAllStudents().size(), 0);
+        Assert.assertEquals(studentService.findAll().size(), 0);
     }
 
 

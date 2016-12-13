@@ -121,12 +121,12 @@
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="60.0" prefWidth="1221.0" spacing="30.0">
                            <children>
-                              <TextField promptText="Fornavn" />
-                              <TextField promptText="Efternavn" />
-                              <ComboBox prefWidth="150.0" promptText="Klasse" />
-                              <TextField promptText="Serienummer" />
-                              <TextField promptText="Mail" />
-                              <Button mnemonicParsing="false" text="Søg" />
+                              <TextField fx:id="firstNameTextField" promptText="Fornavn" />
+                              <TextField fx:id="lastNameTextField" promptText="Efternavn" />
+                              <ComboBox fx:id="schoolClassCombobox" prefWidth="150.0" promptText="Klasse" />
+                              <TextField fx:id="serialNumberTextField" promptText="Serienummer" />
+                              <TextField fx:id="emailTextField" promptText="Mail" />
+                              <Button fx:id="searchButton" mnemonicParsing="false" text="Søg" />
                            </children>
                            <padding>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
