@@ -62,7 +62,7 @@ public class LogInController {
 		boolean loginCheck = loginService.findAllLogins().stream()
 				.anyMatch(login -> login.getUsername().equals(username.getText())&& login.getPassword().equals(password.getText()));
 
-		if (loginCheck || true) {
+		if (loginCheck) {
 
 			Stage stage = App.getStage();
 
