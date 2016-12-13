@@ -102,9 +102,6 @@ public class MainTabController {
             }
         });
 
-
-        //todo adgangskode
-
         //adding columns
         studentTable.getColumns().addAll(firstNameColumn, lastNameColumn, classColumn, emailColumn, deviceColumn, serialnumberColumn, passwordColumn);
 
