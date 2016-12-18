@@ -13,10 +13,12 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.util.Callback;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 @Component
 public class MainTabController {
@@ -52,6 +54,8 @@ public class MainTabController {
     @FXML
     TextField emailTextField;
 
+    ArrayList<Student> queryList;
+
 
     @FXML
     public void initialize() {
@@ -61,7 +65,9 @@ public class MainTabController {
 
         //loads all student objects from the databases student table.
         ArrayList<Student> studentsArray = (ArrayList<Student>)studentService.findAll();
+        queryList = (ArrayList<Student>)studentService.findAll();
         ObservableList<Student> studentList = FXCollections.observableArrayList(studentsArray);
+;
 
         createStudentTable();
         loadStudents(studentList);
@@ -79,6 +85,9 @@ public class MainTabController {
      */
     public void createStudentTable(){
 
+/*        studentTable.getSelectionModel().setSelectionMode(
+                SelectionMode.MULTIPLE
+        );*/
 
         //creating firstNamecolumn
         TableColumn<Student, String> firstNameColumn = new TableColumn<>("Fornavn");
@@ -214,13 +223,16 @@ public class MainTabController {
     public void searchButtonClicked() {
 
         String comboBoxContent = schoolClassCombobox.getSelectionModel().getSelectedItem() == null ? "" :
-                schoolClassCombobox.getSelectionModel().getSelectedItem().toString();
+        schoolClassCombobox.getSelectionModel().getSelectedItem().toString();
 
-        ArrayList<Student> searchResultList = (ArrayList<Student>) studentService.search(firstNameTextField.getText(), lastNameTextField.getText(), comboBoxContent,
-                serialNumberTextField.getText(), emailTextField.getText());
+        // todo needs more search queries inside filter.. add &&
+        ArrayList<Student> filteredQueryList = queryList.stream()
+                .filter(s ->
+                        StringUtils.containsIgnoreCase(s.getFirstName(), firstNameTextField.getText()))
+                .collect(Collectors.toCollection(ArrayList::new));
+        System.out.println(filteredQueryList.size());
 
-        ObservableList<Student> searchResultObsList = FXCollections.observableArrayList(searchResultList);
-
+        ObservableList<Student> searchResultObsList = FXCollections.observableArrayList(filteredQueryList);
         studentTable.setItems(searchResultObsList);
     }
 

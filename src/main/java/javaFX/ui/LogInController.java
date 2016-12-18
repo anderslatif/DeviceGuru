@@ -2,7 +2,6 @@ package javaFX.ui;
 
 import javaFX.App;
 import javaFX.models.Login.LoginService;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -11,13 +10,10 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-import java.util.stream.Collectors;
 
 
 @Component
@@ -63,6 +59,7 @@ public class LogInController {
 
 		boolean loginCheck = loginService.findAllLogins().stream()
 				.anyMatch(login -> login.getUsername().equals(username.getText())&& login.getPassword().equals(password.getText()));
+
 
 		if (loginCheck) {
 			Stage stage = App.getStage();
