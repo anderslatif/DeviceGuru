@@ -10,5 +10,7 @@ public interface LoginService {
 	@Transactional
 	Login save(Login login);
 
+	Login authenticateUser(String username, String password);
+
 
 }

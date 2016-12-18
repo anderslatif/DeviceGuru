@@ -2,9 +2,6 @@ package javaFX.models.Login;
 
 import java.util.List;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +14,8 @@ class LoginServiceImpl implements LoginService {
 
 	private final LoginRepository loginRepository;
 
+	private final LoginSearchRepository loginSearchRepository;
+
 	public List<Login> findAllLogins() {
 		return loginRepository.findAll();
 	}
@@ -25,4 +24,9 @@ class LoginServiceImpl implements LoginService {
 	public Login save(Login login) {
 		return loginRepository.save(login);
 	}
+
+	public Login authenticateUser(String username, String password) {
+		return loginSearchRepository.findByUsernameAndPassword(username, password);
+	}
 }
+

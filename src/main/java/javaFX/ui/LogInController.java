@@ -57,11 +57,7 @@ public class LogInController {
 	 */
 	private void logInButtonClicked() {
 
-		boolean loginCheck = loginService.findAllLogins().stream()
-				.anyMatch(login -> login.getUsername().equals(username.getText())&& login.getPassword().equals(password.getText()));
-
-
-		if (loginCheck) {
+		if (loginService.authenticateUser(username.getText(), password.getText()) != null) {
 			Stage stage = App.getStage();
 
 			stage.setScene(new Scene(mainTabView.getView()));
@@ -69,7 +65,7 @@ public class LogInController {
 			stage.centerOnScreen();
 			stage.show();
 		} else {
-			Label messageLabel = new Label("Wrong log in credentials");
+			Label messageLabel = new Label("Wrong login credentials");
 			rootBorderPane.setTop(messageLabel);
 		}
 	}
