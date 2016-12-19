@@ -21,7 +21,7 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javaFX.ui.MainTabController">
    <center>
-      <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+      <TabPane fx:id="tabPane" prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
         <tabs>
             <Tab text="Reparation">
                <content>
@@ -333,7 +333,7 @@
    <right>
       <HBox alignment="TOP_CENTER">
          <children>
-            <Button mnemonicParsing="false" prefHeight="33.0" prefWidth="59.0" text="Log af" BorderPane.alignment="CENTER" />
+            <Button fx:id="logoutButton" mnemonicParsing="false" prefHeight="33.0" prefWidth="59.0" text="Log af" BorderPane.alignment="CENTER" />
          </children>
       </HBox>
    </right>
