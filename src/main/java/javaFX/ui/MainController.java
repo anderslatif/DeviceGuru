@@ -2,6 +2,7 @@ package javaFX.ui;
 
 import javaFX.App;
 import javaFX.ui.StudentTab.StudentTabView;
+import javaFX.util.UserMessage;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -24,6 +25,9 @@ public class MainController {
     private Button logoutButton;
 
     @FXML
+    BorderPane mainWindowBorderPane;
+
+    @FXML
     TabPane tabPane;
 
 
@@ -35,6 +39,7 @@ public class MainController {
         selectionModel.selectedIndexProperty().addListener((ov, oldTab, newTab) -> callViews());
 
         logoutButton.setOnAction(e -> loggingOut());
+
     }
 
 
@@ -73,7 +78,6 @@ public class MainController {
         stage.centerOnScreen();
         stage.show();
     }
-
 
 
 }

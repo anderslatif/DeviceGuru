@@ -37,6 +37,8 @@ CREATE TABLE IF NOT EXISTS `students` (
   `device`    VARCHAR(100) NOT NULL,
   `email`     VARCHAR(200) NOT NULL,
   `class`     VARCHAR(10) NOT NULL,
+  `department` INT,
+  `activestudent` INT,
   PRIMARY KEY (`email`),
   FOREIGN KEY (`email`) REFERENCES devicelogins(`email`),
   FOREIGN KEY (`device`) REFERENCES devices(`serialnumber`)
@@ -50,7 +52,7 @@ DROP TABLE IF EXISTS `deviceguru`.`personel` ;
 
 CREATE TABLE IF NOT EXISTS `personel` (
   `firstname` VARCHAR(30) NOT NULL,
-  `lastname` VARCHAR(45) NOT NULL,
+  `lastname` VARCHAR(80) NOT NULL,
   `device` VARCHAR(30) NOT NULL,
   `email` VARCHAR(60) NOT NULL,
   PRIMARY KEY (`email`),

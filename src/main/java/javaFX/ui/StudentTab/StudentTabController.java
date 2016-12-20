@@ -7,18 +7,12 @@ import javaFX.models.Student.Student;
 import javaFX.models.Student.StudentService;
 import javaFX.ui.StudentTab.CreateStudents.CreateStudentsView;
 import javaFX.ui.StudentTab.UploadStudents.UploadStudentsView;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.BorderPane;
-import javafx.util.Callback;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -57,6 +51,12 @@ public class StudentTabController {
     TextField lastNameTextField;
 
     @FXML
+    ComboBox departmentCombobox;
+
+    @FXML
+    ComboBox activeStudentCombobox;
+
+    @FXML
     ComboBox schoolClassCombobox;
 
     @FXML
@@ -81,8 +81,6 @@ public class StudentTabController {
     @FXML
     public void initialize() {
 
-
-
         //loads all student objects from the database student table.
         ArrayList<Student> studentsArray = (ArrayList<Student>)studentService.findAll();
         queryList = (ArrayList<Student>)studentService.findAll();
@@ -93,17 +91,27 @@ public class StudentTabController {
         loadStudents(studentList);
 
         searchFieldOnKeyPress();
-        setUpSearchFields();
+        setUpSearchComboboxes();
 
         createStudentsButton.setOnAction( e -> changeToCreateStudentsNode());
         uploadButton.setOnAction( e -> changeToUploadStudentsNode());
     }
 
 
-    public void setUpSearchFields() {
 
-        List<String> nonUniqueSchoolClasses = queryList.stream().map(Student::getSchoolClass).distinct().collect(Collectors.toCollection(ArrayList::new));
-        // .groupingBy
+    public void setUpSearchComboboxes() {
+
+        // todo this list needs to be sorted!!
+        // consider using comparator
+        List<String> uniqueSchoolClasses = queryList.stream().map(Student::getSchoolClass).distinct()
+                .filter(s -> !s.trim().isEmpty())
+                .collect(Collectors.toCollection(ArrayList::new));
+
+        uniqueSchoolClasses.forEach(classString -> schoolClassCombobox.getItems().add(classString));
+
+
+        activeStudentCombobox.getItems().addAll("Indmeldt", "Gradueret", "Alle");
+
     }
 
 
@@ -148,19 +156,25 @@ public class StudentTabController {
     }
 
     public void regretDeletedStudent() {
-
+        // get last item in arraylist
+        // add to db and observable list
+        // show success message
     }
 
 
     public void searchFieldOnKeyPress() {
         firstNameTextField.setOnKeyReleased( e -> search());
         lastNameTextField.setOnKeyReleased( e -> search());
+        departmentCombobox.setOnAction( e -> search());
+        activeStudentCombobox.setOnAction( e -> search());
         schoolClassCombobox.setOnAction( e -> search());
         serialNumberTextField.setOnKeyReleased( e -> search());
         emailTextField.setOnKeyReleased( e -> search());
     }
 
     public void search() {
+
+        // remember to include indmeldt and department combobox.. create enums
 
         String comboBoxContent = schoolClassCombobox.getSelectionModel().getSelectedItem() == null ? "" :
                 schoolClassCombobox.getSelectionModel().getSelectedItem().toString();
