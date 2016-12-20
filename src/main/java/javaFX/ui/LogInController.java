@@ -11,7 +11,6 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -21,7 +20,7 @@ import org.springframework.stereotype.Component;
 public class LogInController {
 
 	@Autowired
-    MainTabView mainTabView;
+	MainView mainView;
 
 	@Autowired
 	LoginService loginService;
@@ -62,9 +61,9 @@ public class LogInController {
 			Stage stage = App.getStage();
 
 			if (stage.getScene() != null) {
-				stage.getScene().setRoot(new Region());
+				stage.getScene().setRoot(new BorderPane());
 			}
-			stage.setScene(new Scene(mainTabView.getView()));
+			stage.setScene(new Scene(mainView.getView()));
 			stage.setMaximized(true);
 			stage.centerOnScreen();
 			stage.show();

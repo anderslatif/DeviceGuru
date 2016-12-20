@@ -1,17 +1,23 @@
 package javaFX.ui.StudentTab;
 
+import javaFX.App;
 import javaFX.models.Device.DeviceService;
 import javaFX.models.DeviceLogin.DeviceLoginService;
 import javaFX.models.Student.Student;
 import javaFX.models.Student.StudentService;
+import javaFX.ui.StudentTab.CreateStudents.CreateStudentsView;
+import javaFX.ui.StudentTab.UploadStudents.UploadStudentsView;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.input.KeyCode;
+import javafx.scene.layout.BorderPane;
 import javafx.util.Callback;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +39,12 @@ public class StudentTabController {
     @Autowired
     DeviceLoginService deviceLoginService;
 
+    @Autowired
+    CreateStudentsView createStudentsView;
+
+    @Autowired
+    UploadStudentsView uploadStudentsView;
+
 
 
     @FXML
@@ -53,22 +65,25 @@ public class StudentTabController {
     @FXML
     TextField emailTextField;
 
+    @FXML
+    Button createStudentsButton;
 
+    @FXML
+    BorderPane mainStudentTabBorderPane;
 
+    @FXML
+    Button uploadButton;
+
+    ArrayList<Student> deletedStudents = new ArrayList<>();
 
     ArrayList<Student> queryList;
-
 
     @FXML
     public void initialize() {
 
 
 
-
-
-        studentTable.setEditable(true);
-
-        //loads all student objects from the databases student table.
+        //loads all student objects from the database student table.
         ArrayList<Student> studentsArray = (ArrayList<Student>)studentService.findAll();
         queryList = (ArrayList<Student>)studentService.findAll();
         ObservableList<Student> studentList = FXCollections.observableArrayList(studentsArray);
@@ -77,10 +92,11 @@ public class StudentTabController {
         createStudentTable();
         loadStudents(studentList);
 
-
         searchFieldOnKeyPress();
-
         setUpSearchFields();
+
+        createStudentsButton.setOnAction( e -> changeToCreateStudentsNode());
+        uploadButton.setOnAction( e -> changeToUploadStudentsNode());
     }
 
 
@@ -100,136 +116,39 @@ public class StudentTabController {
      */
     public void createStudentTable(){
 
-/*        studentTable.getSelectionModel().setSelectionMode(
+        studentTable.setEditable(true);
+
+        studentTable.getSelectionModel().setSelectionMode(
                 SelectionMode.MULTIPLE
-        );*/
+        );
 
-        //creating firstNamecolumn
-        TableColumn<Student, String> firstNameColumn = new TableColumn<>("Fornavn");
-        firstNameColumn.setMinWidth(150);
-        firstNameColumn.setCellValueFactory(new PropertyValueFactory<>("firstName"));
-        firstNameColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+        // removes the extra undefined column
+        studentTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
-        firstNameColumn.setOnEditCommit( (TableColumn.CellEditEvent<Student, String> t) -> {
-            (t.getTableView().getItems().get(
-                    t.getTablePosition().getRow())
-            ).setFirstName(t.getNewValue());
-            Student student = studentTable.getSelectionModel().getSelectedItem();
-            studentService.save(student);
-        });
-
-
-        //creating lastnamecolumn
-        TableColumn<Student, String> lastNameColumn = new TableColumn<>("Efternavn");
-        lastNameColumn.setMinWidth(200);
-        lastNameColumn.setCellValueFactory(new PropertyValueFactory<>("lastName"));
-        lastNameColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-
-        lastNameColumn.setOnEditCommit( (TableColumn.CellEditEvent<Student, String> t) -> {
-            (t.getTableView().getItems().get(
-                    t.getTablePosition().getRow())
-            ).setLastName(t.getNewValue());
-            Student student = studentTable.getSelectionModel().getSelectedItem();
-            studentService.save(student);
-        });
-
-
-        //creating schoolclasscolumn
-        TableColumn<Student, String> classColumn = new TableColumn<>("Klasse");
-        classColumn.setMinWidth(50);
-        classColumn.setCellValueFactory(new PropertyValueFactory<>("schoolClass"));
-        classColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-
-        classColumn.setOnEditCommit( (TableColumn.CellEditEvent<Student, String> t) -> {
-            (t.getTableView().getItems().get(
-                    t.getTablePosition().getRow())
-            ).setSchoolClass(t.getNewValue());
-            Student student = studentTable.getSelectionModel().getSelectedItem();
-            studentService.save(student);
-        });
-
-        //creating emailcolumn
-        TableColumn<Student, String> emailColumn = new TableColumn<>("Email");
-        emailColumn.setMinWidth(200);
-        emailColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
-        emailColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-
-        emailColumn.setOnEditCommit( (TableColumn.CellEditEvent<Student, String> t) -> {
-            (t.getTableView().getItems().get(
-                    t.getTablePosition().getRow())
-            ).setEmail(t.getNewValue());
-            Student student = studentTable.getSelectionModel().getSelectedItem();
-            studentService.save(student);
-        });
-
-        //creating devicecolumn
-        TableColumn<Student, String> deviceColumn = new TableColumn<>("Device");
-        deviceColumn.setMinWidth(200);
-        deviceColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Student, String>, ObservableValue<String>>() {
-            @Override
-            public ObservableValue<String> call(TableColumn.CellDataFeatures<Student, String> data) {
-                return new SimpleStringProperty(data.getValue().getDevice().getType());
+        studentTable.setOnKeyPressed( e -> {
+            if (e.getCode() == KeyCode.DELETE) {
+                deleteStudent();
             }
         });
-        deviceColumn.setCellFactory(TextFieldTableCell.forTableColumn());
 
-        deviceColumn.setOnEditCommit( (TableColumn.CellEditEvent<Student, String> t) -> {
-            (t.getTableView().getItems().get(
-                    t.getTablePosition().getRow())
-            ).getDevice().setType(t.getNewValue());
-            Student student = studentTable.getSelectionModel().getSelectedItem();
-            deviceService.save(student.getDevice());
-        });
-
-        //creating serialnumbercolumn
-        TableColumn<Student, String> serialnumberColumn = new TableColumn<>("Serienummer");
-        serialnumberColumn.setMinWidth(200);
-        serialnumberColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Student, String>, ObservableValue<String>>() {
-            @Override
-            public ObservableValue<String> call(TableColumn.CellDataFeatures<Student, String> data) {
-                return new SimpleStringProperty(data.getValue().getDevice().getSerialnumber());
-            }
-        });
-        serialnumberColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-
-        serialnumberColumn.setOnEditCommit( (TableColumn.CellEditEvent<Student, String> t) -> {
-            (t.getTableView().getItems().get(
-                    t.getTablePosition().getRow())
-            ).getDevice().setSerialnumber(t.getNewValue());
-            Student student = studentTable.getSelectionModel().getSelectedItem();
-            deviceService.save(student.getDevice());
-        });
-
-        //creating adgangskode column
-        TableColumn<Student, String> passwordColumn = new TableColumn<>("Adgangskode");
-        passwordColumn.setMinWidth(200);
-        passwordColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Student, String>, ObservableValue<String>>() {
-            @Override
-            public ObservableValue<String> call(TableColumn.CellDataFeatures<Student, String> data) {
-                return new SimpleStringProperty(data.getValue().getDeviceLogin().getPassword());
-            }
-        });
-        passwordColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-
-        passwordColumn.setOnEditCommit( (TableColumn.CellEditEvent<Student, String> t) -> {
-            (t.getTableView().getItems().get(
-                    t.getTablePosition().getRow())
-            ).getDeviceLogin().setPassword(t.getNewValue());
-            Student student = studentTable.getSelectionModel().getSelectedItem();
-            deviceLoginService.save(student.getDeviceLogin());
-        });
-
-
-        //adding columns
-        studentTable.getColumns().addAll(firstNameColumn, lastNameColumn, classColumn, emailColumn, deviceColumn, serialnumberColumn, passwordColumn);
-
+        StudentTableColumns.setUpColumns(studentTable, studentService, deviceService, deviceLoginService);
     }
-
 
     //setting content in tableView
     public void loadStudents(ObservableList<Student> studentList) {
-
         studentTable.setItems(studentList);
+    }
+
+
+    public void deleteStudent() {
+        // delete student
+        // add to arrayList
+        // add regret button
+        // implement regret deleted student method
+    }
+
+    public void regretDeletedStudent() {
+
     }
 
 
@@ -254,6 +173,24 @@ public class StudentTabController {
 
         ObservableList<Student> searchResultObsList = FXCollections.observableArrayList(filteredQueryList);
         studentTable.setItems(searchResultObsList);
+    }
+
+
+    public void changeToCreateStudentsNode() {
+        TabPane tabPane = (TabPane) App.getStage().getScene().getRoot().lookup("#tabPane");
+        int selectedTabIndex = tabPane.getSelectionModel().getSelectedIndex();
+        Tab selectedTab = tabPane.getTabs().get(selectedTabIndex);
+
+        selectedTab.setContent(createStudentsView.getView());
+
+    }
+
+    public void changeToUploadStudentsNode() {
+        TabPane tabPane = (TabPane) App.getStage().getScene().getRoot().lookup("#tabPane");
+        int selectedTabIndex = tabPane.getSelectionModel().getSelectedIndex();
+        Tab selectedTab = tabPane.getTabs().get(selectedTabIndex);
+
+        selectedTab.setContent(uploadStudentsView.getView());
     }
 
 

@@ -1,7 +1,7 @@
-package javaFX.ui;
+package javaFX.ui.StudentTab;
 
 import javaFX.AbstractFxmlView;
 import org.springframework.stereotype.Component;
 
 @Component
-public class MainTabView extends AbstractFxmlView {}
+public class StudentTabView extends AbstractFxmlView {}

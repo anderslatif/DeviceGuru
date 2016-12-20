@@ -11,7 +11,6 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
@@ -19,7 +18,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javaFX.ui.MainTabController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javaFX.ui.MainController">
    <center>
       <TabPane fx:id="tabPane" prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
         <tabs>
@@ -92,74 +91,7 @@
                   </VBox>
                </content>
             </Tab>
-          <Tab text="Elever">
-               <content>
-                  <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
-                     <children>
-                        <Label text="Elever">
-                           <font>
-                              <Font size="24.0" />
-                           </font>
-                           <padding>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                           </padding>
-                        </Label>
-                        <HBox alignment="CENTER" prefHeight="60.0" prefWidth="1221.0" spacing="30.0">
-                           <children>
-                              <Region prefHeight="50.0" prefWidth="409.0" />
-                              <ComboBox prefWidth="150.0" promptText="Afsnit" />
-                              <ComboBox prefWidth="150.0" promptText="Indmeldt" />
-                              <Region prefHeight="50.0" prefWidth="324.0" />
-                              <Button mnemonicParsing="false" text="Opryk" />
-                           </children>
-                           <VBox.margin>
-                              <Insets />
-                           </VBox.margin>
-                           <padding>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                           </padding>
-                        </HBox>
-                        <HBox alignment="CENTER" prefHeight="60.0" prefWidth="1221.0" spacing="30.0">
-                           <children>
-                              <TextField fx:id="firstNameTextField" promptText="Fornavn" />
-                              <TextField fx:id="lastNameTextField" promptText="Efternavn" />
-                              <ComboBox fx:id="schoolClassCombobox" prefWidth="150.0" promptText="Klasse" />
-                              <TextField fx:id="serialNumberTextField" promptText="Serienummer" />
-                              <TextField fx:id="emailTextField" promptText="Mail" />
-                              <Button fx:id="searchButton" mnemonicParsing="false" text="Søg" />
-                           </children>
-                           <padding>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                           </padding>
-                        </HBox>
-                        <TableView fx:id="studentTable" editable="true" prefHeight="396.0" prefWidth="1221.0" />
-                        <VBox alignment="TOP_CENTER" prefHeight="67.0" prefWidth="1221.0">
-                           <children>
-                              <Label text="Historik">
-                                 <padding>
-                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                 </padding>
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font>
-                              </Label>
-                              <HBox alignment="CENTER" prefHeight="60.0" prefWidth="1221.0">
-                                 <children>
-                                    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#5ecd36" height="40.0" stroke="BLACK" strokeType="INSIDE" width="420.0" />
-                                 </children>
-                              </HBox>
-                              <AnchorPane prefHeight="0.0" prefWidth="1221.0">
-                                 <children>
-                                    <Label layoutX="379.0" layoutY="3.0" text="28/11-2016" />
-                                    <Label layoutX="819.0" layoutY="3.0" text="?" />
-                                 </children>
-                              </AnchorPane>
-                           </children>
-                        </VBox>
-                     </children>
-                  </VBox>
-               </content>
-          </Tab>
+          <Tab text="Elever" />
             <Tab text="Personale">
                <content>
                   <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">

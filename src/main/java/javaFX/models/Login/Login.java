@@ -22,7 +22,7 @@ public class Login {
     @Column(name="password")
     private String password;
 
-    @OneToMany(fetch = FetchType.EAGER)
+    @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name="owner")
     private List<Assignment> assignments;
 

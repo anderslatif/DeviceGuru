@@ -1,8 +1,7 @@
 package javaFX;
 
 import javaFX.ui.LoginView;
-import javaFX.ui.MainTabView;
-import javafx.fxml.FXML;
+import javaFX.ui.MainView;
 import javafx.scene.Scene;
 import javafx.scene.control.SingleSelectionModel;
 import javafx.scene.control.Tab;
@@ -26,7 +25,7 @@ public class App extends AbstractJavaFxApplicationSupport {
 	LoginView loginView;
 
 	@Autowired
-	MainTabView mainTabView; //todo debug
+	MainView mainView; //todo debug
 
 	@Override
 	public void start(Stage stage) throws Exception {
@@ -35,7 +34,7 @@ public class App extends AbstractJavaFxApplicationSupport {
 
 		stage.setTitle(windowTitle);
 //		stage.setScene(new Scene(loginView.getView()));
-		stage.setScene(new Scene(mainTabView.getView())); //todo debug
+		stage.setScene(new Scene(mainView.getView())); //todo debug
 		stage.setMaximized(true); //todo debug
 //		stage.centerOnScreen();
 		BorderPane borderPane = (BorderPane) stage.getScene().getRoot(); //todo debug
