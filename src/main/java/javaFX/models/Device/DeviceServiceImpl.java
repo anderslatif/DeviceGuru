@@ -22,4 +22,9 @@ class DeviceServiceImpl implements DeviceService {
 	public Device save(Device device) {
 		return deviceRepository.save(device);
 	}
+
+	@Override
+	public void delete(Device device) {
+		deviceRepository.delete(device);
+	}
 }

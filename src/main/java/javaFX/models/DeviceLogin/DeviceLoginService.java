@@ -12,5 +12,7 @@ public interface DeviceLoginService {
 	@Transactional
 	DeviceLogin save(DeviceLogin deviceLogin);
 
+	@Transactional
+	void delete(DeviceLogin deviceLogin);
 
 }

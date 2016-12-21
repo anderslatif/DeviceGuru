@@ -12,9 +12,6 @@
 <?import javafx.scene.layout.VBox?>
 
 <BorderPane fx:id="mainCreateStudentsBorderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javaFX.ui.StudentTab.CreateStudents.CreateStudentsController">
-   <top>
-      <Region prefHeight="97.0" prefWidth="640.0" BorderPane.alignment="CENTER" />
-   </top>
    <left>
       <Region prefHeight="183.0" prefWidth="28.0" BorderPane.alignment="CENTER" />
    </left>
@@ -38,7 +35,6 @@
             <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
                   <Region prefHeight="100.0" prefWidth="261.0" />
-                  <Button fx:id="returnButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="88.0" text="Tilbage" />
                   <Button fx:id="addStudent" mnemonicParsing="false" prefHeight="25.0" prefWidth="61.0" text="Tilføj" />
                </children>
             </HBox>
@@ -71,4 +67,11 @@
          </children>
       </GridPane>
    </center>
+   <top>
+      <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="returnButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="88.0" text="Tilbage" />
+         </children>
+      </HBox>
+   </top>
 </BorderPane>

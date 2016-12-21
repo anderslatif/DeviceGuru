@@ -12,5 +12,7 @@ public interface DeviceService {
 	@Transactional
 	Device save(Device device);
 
+	@Transactional
+	void delete(Device device);
 
 }

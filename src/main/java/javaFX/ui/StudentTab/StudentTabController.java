@@ -7,14 +7,19 @@ import javaFX.models.Student.Student;
 import javaFX.models.Student.StudentService;
 import javaFX.ui.StudentTab.CreateStudents.CreateStudentsView;
 import javaFX.ui.StudentTab.UploadStudents.UploadStudentsView;
+import javaFX.util.UserMessage;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.StackPane;
+import javafx.util.StringConverter;
 import org.apache.commons.lang3.StringUtils;
+import org.hibernate.criterion.Example;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -74,6 +79,12 @@ public class StudentTabController {
     @FXML
     Button uploadButton;
 
+    @FXML
+    StackPane regretButtonStackPane;
+
+    @FXML
+    Slider deviceHistorySlider;
+
     ArrayList<Student> deletedStudents = new ArrayList<>();
 
     ArrayList<Student> queryList;
@@ -92,6 +103,7 @@ public class StudentTabController {
 
         searchFieldOnKeyPress();
         setUpSearchComboboxes();
+        setUpSlider();
 
         createStudentsButton.setOnAction( e -> changeToCreateStudentsNode());
         uploadButton.setOnAction( e -> changeToUploadStudentsNode());
@@ -109,8 +121,9 @@ public class StudentTabController {
 
         uniqueSchoolClasses.forEach(classString -> schoolClassCombobox.getItems().add(classString));
 
-
         activeStudentCombobox.getItems().addAll("Indmeldt", "Gradueret", "Alle");
+
+        departmentCombobox.getItems().addAll("Alle", "Indskolingen", "Udskolingen");
 
     }
 
@@ -139,6 +152,8 @@ public class StudentTabController {
             }
         });
 
+        studentTable.setOnMouseClicked( e -> showStudentHistory());
+
         StudentTableColumns.setUpColumns(studentTable, studentService, deviceService, deviceLoginService);
     }
 
@@ -148,17 +163,50 @@ public class StudentTabController {
     }
 
 
+
     public void deleteStudent() {
-        // delete student
-        // add to arrayList
-        // add regret button
+
+        List<Student> studentsToDelete = studentTable.getSelectionModel().getSelectedItems();
+
+        for (Student s : studentsToDelete) {
+            System.out.println(s);
+            deletedStudents.add(s);
+
+            // delete device history
+            //deviceService.delete(s.getDevice());
+            deviceLoginService.delete(s.getDeviceLogin());
+
+            // todo Figure out how to delete despite foreign key constraints
+            //studentService.delete(s);
+
+            studentTable.getItems().remove(s);
+        }
+
+
+
+        Button regretButton = new Button("Fortryd Sletning");
+        Tooltip toolTip = new Tooltip("Fortryd den seneste slettede elev. \nFlere tryk fortryder flere slettede elever.");
+        regretButton.setTooltip(toolTip);
+        regretButton.setOnAction( e -> regretDeletedStudent());
+        regretButtonStackPane.getChildren().add(regretButton);
         // implement regret deleted student method
+
+        UserMessage.showSuccess("Du har slettet en elev.");
     }
 
     public void regretDeletedStudent() {
-        // get last item in arraylist
-        // add to db and observable list
-        // show success message
+
+        Student studentToAddAgain = deletedStudents.get(deletedStudents.size()-1);
+        deletedStudents.remove(studentToAddAgain);
+
+        studentTable.getItems().add(studentToAddAgain);
+        studentService.save(studentToAddAgain);
+
+        if (deletedStudents.size() == 0) {
+            regretButtonStackPane.getChildren().clear();
+        }
+
+        UserMessage.showSuccess("Du har fortrudt sidste slettede elev.");
     }
 
 
@@ -175,6 +223,7 @@ public class StudentTabController {
     public void search() {
 
         // remember to include indmeldt and department combobox.. create enums
+        // need to change the entity model
 
         String comboBoxContent = schoolClassCombobox.getSelectionModel().getSelectedItem() == null ? "" :
                 schoolClassCombobox.getSelectionModel().getSelectedItem().toString();
@@ -190,6 +239,66 @@ public class StudentTabController {
     }
 
 
+    private void setUpSlider() {
+        deviceHistorySlider.setShowTickMarks(false);
+        // the thumb is the round selector on the slider
+//        thumb.getChildren().clear();
+    }
+
+
+    public void showStudentHistory() {
+        Student selectedStudent = studentTable.getSelectionModel().getSelectedItem();
+        selectedStudent.getDevice().getSerialnumber();
+
+        // todo get studenthistory from table
+        // easiest way to do this is to ignore time span and split the slider into equal parts depending on how many intervals there are
+        // if end date and start date for something else isn't the same then another empty interval needs to be added
+        // finally remember to leave the last tick empty unless it is current date
+
+        // these values will have to be configured dynamically .. this is just an example
+        deviceHistorySlider.setMin(0);
+        deviceHistorySlider.setValue(1);
+        deviceHistorySlider.setMax(3);
+        deviceHistorySlider.setMinorTickCount(0);
+        deviceHistorySlider.setMajorTickUnit(1);
+        deviceHistorySlider.setShowTickMarks(true);
+        deviceHistorySlider.setShowTickLabels(true);
+
+
+        deviceHistorySlider.setLabelFormatter(new StringConverter<Double>() {
+            @Override
+            public String toString(Double n) {
+                if (n < 0.5) return "Value1";
+                if (n < 1.5) return "Value2";
+                if (n < 2.5) return "Value3";
+
+                return "Value 4";
+            }
+
+            @Override
+            public Double fromString(String s) {
+                switch (s) {
+                    case "Value1":
+                        return 0d;
+                    case "Value2":
+                        return 1d;
+                    case "Value3":
+                        return 2d;
+                    case "Value4":
+                        return 3d;
+
+                    default:
+                        return 3d;
+                }
+            }
+        });
+
+    }
+
+
+
+
+
     public void changeToCreateStudentsNode() {
         TabPane tabPane = (TabPane) App.getStage().getScene().getRoot().lookup("#tabPane");
         int selectedTabIndex = tabPane.getSelectionModel().getSelectedIndex();
@@ -197,6 +306,7 @@ public class StudentTabController {
 
         selectedTab.setContent(createStudentsView.getView());
 
+        // todo get history from devicehistory
     }
 
     public void changeToUploadStudentsNode() {

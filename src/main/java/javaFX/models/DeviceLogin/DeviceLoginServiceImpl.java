@@ -24,4 +24,8 @@ class DeviceLoginServiceImpl implements DeviceLoginService {
 	public DeviceLogin save(DeviceLogin deviceLogin) {
 		return deviceLoginRepository.save(deviceLogin);
 	}
+
+	public void delete(DeviceLogin deviceLogin) {
+		deviceLoginRepository.delete(deviceLogin);
+	}
 }

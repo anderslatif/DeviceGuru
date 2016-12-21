@@ -1,0 +1,9 @@
+
+.slider .thumb {
+    visibility: hidden;
+}
+
+.slider .track {
+    -fx-pref-height:15;
+}
+
