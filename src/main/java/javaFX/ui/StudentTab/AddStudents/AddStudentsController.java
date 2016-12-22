@@ -1,32 +1,14 @@
-package javaFX.ui.StudentTab.UploadStudents;
+package javaFX.ui.StudentTab.AddStudents;
 
 import javaFX.App;
-import javaFX.models.Device.DeviceService;
-import javaFX.models.DeviceLogin.DeviceLoginService;
-import javaFX.models.Student.Student;
-import javaFX.models.Student.StudentService;
-import javaFX.ui.StudentTab.CreateStudents.CreateStudentsView;
 import javaFX.ui.StudentTab.StudentTabView;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.control.cell.TextFieldTableCell;
-import javafx.scene.layout.BorderPane;
-import javafx.util.Callback;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
-
 @Component
-public class UploadStudentsController {
+public class AddStudentsController {
 
     @Autowired
     StudentTabView studentTabView;
@@ -62,13 +44,13 @@ public class UploadStudentsController {
     }
 
 
-    public void addColumn() {
+    private void addColumn() {
         // add node block based on grid index
 
     }
 
 
-    public void returnToMainNode() {
+    private void returnToMainNode() {
         TabPane tabPane = (TabPane) App.getStage().getScene().getRoot().lookup("#tabPane");
         int selectedTabIndex = tabPane.getSelectionModel().getSelectedIndex();
         Tab selectedTab = tabPane.getTabs().get(selectedTabIndex);
@@ -76,12 +58,12 @@ public class UploadStudentsController {
         selectedTab.setContent(studentTabView.getView());
     }
 
-    public void uploadFile() {
+    private void uploadFile() {
         // filechoooser..
         // should receive file and return list
     }
 
-    public void readToDB() {
+    private void readToDB() {
         // check if columns more than one and allowed
     }
 

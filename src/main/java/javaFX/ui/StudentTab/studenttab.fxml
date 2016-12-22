@@ -33,8 +33,7 @@
                   <ComboBox fx:id="departmentCombobox" prefWidth="150.0" promptText="Afsnit" />
                   <ComboBox fx:id="activeStudentCombobox" prefWidth="150.0" promptText="Indmeldt" />
                   <StackPane fx:id="regretButtonStackPane" prefHeight="50.0" prefWidth="134.0" />
-                  <Button fx:id="uploadButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="92.0" text="Upload Fil" />
-                  <Button fx:id="createStudentsButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="99.0" text="Nye Elever" />
+                  <Button fx:id="addStudentsButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="92.0" text="Tilføj Elever" />
                   <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="67.0" text="Opryk" />
                </children>
                <VBox.margin>

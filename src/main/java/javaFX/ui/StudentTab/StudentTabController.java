@@ -5,8 +5,7 @@ import javaFX.models.Device.DeviceService;
 import javaFX.models.DeviceLogin.DeviceLoginService;
 import javaFX.models.Student.Student;
 import javaFX.models.Student.StudentService;
-import javaFX.ui.StudentTab.CreateStudents.CreateStudentsView;
-import javaFX.ui.StudentTab.UploadStudents.UploadStudentsView;
+import javaFX.ui.StudentTab.AddStudents.AddStudentsView;
 import javaFX.util.UserMessage;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -17,9 +16,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 import javafx.util.StringConverter;
 import org.apache.commons.lang3.StringUtils;
-import org.hibernate.criterion.Example;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -39,10 +36,7 @@ public class StudentTabController {
     DeviceLoginService deviceLoginService;
 
     @Autowired
-    CreateStudentsView createStudentsView;
-
-    @Autowired
-    UploadStudentsView uploadStudentsView;
+    AddStudentsView addStudentsView;
 
 
 
@@ -71,13 +65,10 @@ public class StudentTabController {
     TextField emailTextField;
 
     @FXML
-    Button createStudentsButton;
+    Button addStudentsButton;
 
     @FXML
     BorderPane mainStudentTabBorderPane;
-
-    @FXML
-    Button uploadButton;
 
     @FXML
     StackPane regretButtonStackPane;
@@ -105,13 +96,12 @@ public class StudentTabController {
         setUpSearchComboboxes();
         setUpSlider();
 
-        createStudentsButton.setOnAction( e -> changeToCreateStudentsNode());
-        uploadButton.setOnAction( e -> changeToUploadStudentsNode());
+        addStudentsButton.setOnAction( e -> changeToAddStudentsNode());
     }
 
 
 
-    public void setUpSearchComboboxes() {
+    private void setUpSearchComboboxes() {
 
         // todo this list needs to be sorted!!
         // consider using comparator
@@ -135,7 +125,7 @@ public class StudentTabController {
     /**
      * creating the tablecolumns and defining them
      */
-    public void createStudentTable(){
+    private void createStudentTable(){
 
         studentTable.setEditable(true);
 
@@ -158,13 +148,13 @@ public class StudentTabController {
     }
 
     //setting content in tableView
-    public void loadStudents(ObservableList<Student> studentList) {
+    private void loadStudents(ObservableList<Student> studentList) {
         studentTable.setItems(studentList);
     }
 
 
 
-    public void deleteStudent() {
+    private void deleteStudent() {
 
         List<Student> studentsToDelete = studentTable.getSelectionModel().getSelectedItems();
 
@@ -194,7 +184,7 @@ public class StudentTabController {
         UserMessage.showSuccess("Du har slettet en elev.");
     }
 
-    public void regretDeletedStudent() {
+    private void regretDeletedStudent() {
 
         Student studentToAddAgain = deletedStudents.get(deletedStudents.size()-1);
         deletedStudents.remove(studentToAddAgain);
@@ -209,8 +199,9 @@ public class StudentTabController {
         UserMessage.showSuccess("Du har fortrudt sidste slettede elev.");
     }
 
+    // todo opryk button
 
-    public void searchFieldOnKeyPress() {
+    private void searchFieldOnKeyPress() {
         firstNameTextField.setOnKeyReleased( e -> search());
         lastNameTextField.setOnKeyReleased( e -> search());
         departmentCombobox.setOnAction( e -> search());
@@ -220,7 +211,7 @@ public class StudentTabController {
         emailTextField.setOnKeyReleased( e -> search());
     }
 
-    public void search() {
+    private void search() {
 
         // remember to include indmeldt and department combobox.. create enums
         // need to change the entity model
@@ -246,7 +237,7 @@ public class StudentTabController {
     }
 
 
-    public void showStudentHistory() {
+    private void showStudentHistory() {
         Student selectedStudent = studentTable.getSelectionModel().getSelectedItem();
         selectedStudent.getDevice().getSerialnumber();
 
@@ -297,24 +288,12 @@ public class StudentTabController {
 
 
 
-
-
-    public void changeToCreateStudentsNode() {
+    private void changeToAddStudentsNode() {
         TabPane tabPane = (TabPane) App.getStage().getScene().getRoot().lookup("#tabPane");
         int selectedTabIndex = tabPane.getSelectionModel().getSelectedIndex();
         Tab selectedTab = tabPane.getTabs().get(selectedTabIndex);
 
-        selectedTab.setContent(createStudentsView.getView());
-
-        // todo get history from devicehistory
-    }
-
-    public void changeToUploadStudentsNode() {
-        TabPane tabPane = (TabPane) App.getStage().getScene().getRoot().lookup("#tabPane");
-        int selectedTabIndex = tabPane.getSelectionModel().getSelectedIndex();
-        Tab selectedTab = tabPane.getTabs().get(selectedTabIndex);
-
-        selectedTab.setContent(uploadStudentsView.getView());
+        selectedTab.setContent(addStudentsView.getView());
     }
 
 
