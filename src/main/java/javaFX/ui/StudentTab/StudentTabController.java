@@ -201,7 +201,18 @@ public class StudentTabController {
 
     // todo opryk button
 
+    public void strangeUnknownName() {
+        /*
+        first loop through each selected
+        if 9th grade is moved up then show warning
+        else.. get class, analyze first char and increment.. then return as string
+
+
+        */
+    }
+
     private void searchFieldOnKeyPress() {
+
         firstNameTextField.setOnKeyReleased( e -> search());
         lastNameTextField.setOnKeyReleased( e -> search());
         departmentCombobox.setOnAction( e -> search());
