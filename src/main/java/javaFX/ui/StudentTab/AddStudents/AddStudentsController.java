@@ -40,6 +40,7 @@ public class AddStudentsController {
         readToDBButton.setOnAction( e -> readToDB());
         returnButton.setOnAction( e -> returnToMainNode());
 
+        addSpreadSheet();
         setUpHelpButton();
     }
 
@@ -61,7 +62,7 @@ public class AddStudentsController {
     }
 
     private void addSpreadSheet() {
-        System.out.println("reenter spreadsheet");
+        mainCreateStudentsBorderPane.setBottom(SpreadSheet.returnSpreadSheet());
     }
 
     private void readToDB() {
