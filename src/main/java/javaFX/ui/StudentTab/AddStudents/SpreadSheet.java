@@ -2,31 +2,31 @@ package javaFX.ui.StudentTab.AddStudents;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import org.controlsfx.control.spreadsheet.GridBase;
-import org.controlsfx.control.spreadsheet.SpreadsheetCell;
-import org.controlsfx.control.spreadsheet.SpreadsheetCellType;
-import org.controlsfx.control.spreadsheet.SpreadsheetView;
+import javafx.event.EventHandler;
+import org.controlsfx.control.spreadsheet.*;
 
 public class SpreadSheet {
 
 
+    static ObservableList<ObservableList<SpreadsheetCell>> rows;
 
     public static SpreadsheetView returnSpreadSheet() {
 
-        int rowCount = 100;
-        int columnCount = 15;
+        int rowCount = 80;
+        int columnCount = 10;
         GridBase grid = new GridBase(rowCount, columnCount);
 
-        ObservableList<ObservableList<SpreadsheetCell>> rows = FXCollections.observableArrayList();
+        rows = FXCollections.observableArrayList();
+
+
+//        ObservableList<ObservableList<SpreadsheetCell>> rows = FXCollections.observableArrayList();
         for (int row = 0; row < grid.getRowCount(); ++row) {
             final ObservableList<SpreadsheetCell> list = FXCollections.observableArrayList();
             for (int column = 0; column < grid.getColumnCount(); ++column) {
                 if (row == 0) {
-                    SpreadsheetCell cell = SpreadsheetCellType.STRING.createCell(row, column, 1, 1,"");
-                    cell.setStyle("-fx-background-color: #04B404");
-                    list.add(cell);
+                    list.add(firstRowCell(row, column));
                 } else {
-                    list.add(SpreadsheetCellType.STRING.createCell(row, column, 1, 1,""));
+                    list.add(stringCell(row, column));
                 }
             }
             rows.add(list);
@@ -38,22 +38,26 @@ public class SpreadSheet {
         return spreadsheetView;
     }
 
-    private SpreadsheetCell stringCell(int row, int column) {
+    public static SpreadsheetCell firstRowCell(int row, int column) {
+        SpreadsheetCell cell = SpreadsheetCellType.STRING.createCell(row, column, 1, 1,"             ");
+        cell.setStyle("-fx-background-color: #04B404");
+
+        return cell;
+    }
+
+    private static SpreadsheetCell stringCell(int row, int column) {
         SpreadsheetCell cell = SpreadsheetCellType.STRING.createCell(row, column, 1, 1,"");
         return cell;
     }
 
-    private SpreadsheetCell firstRowCell(int row, int column) {
-        SpreadsheetCell cell = SpreadsheetCellType.STRING.createCell(row, column, 1, 1,"");
-        cell.setStyle("-fx-background-color: green");
-        return cell;
-    }
-
-    private SpreadsheetCell intCell(int row, int column) {
+    private static SpreadsheetCell intCell(int row, int column) {
         SpreadsheetCell cell = SpreadsheetCellType.INTEGER.createCell(row, column, 1, 1, null);
         return cell;
     }
 
+    public static ObservableList<ObservableList<SpreadsheetCell>> getRows() {
+        return rows;
+    }
 
 
 }

@@ -2,10 +2,12 @@ package javaFX.ui.StudentTab.AddStudents;
 
 import javaFX.App;
 import javaFX.ui.StudentTab.StudentTabView;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
+import org.controlsfx.control.spreadsheet.SpreadsheetCell;
 import org.controlsfx.glyphfont.FontAwesome;
 import org.controlsfx.glyphfont.Glyph;
 import org.controlsfx.glyphfont.GlyphFont;
@@ -31,11 +33,14 @@ public class AddStudentsController {
     @FXML
     Button helpButton;
 
+    GlyphFont fontAwesome;
+
 
 
 
     @FXML
     public void initialize() {
+        fontAwesome = GlyphFontRegistry.font("FontAwesome");
 
         readToDBButton.setOnAction( e -> readToDB());
         returnButton.setOnAction( e -> returnToMainNode());
@@ -45,7 +50,6 @@ public class AddStudentsController {
     }
 
     private void setUpHelpButton() {
-        GlyphFont fontAwesome = GlyphFontRegistry.font("FontAwesome");
         Glyph glyph = fontAwesome.create(FontAwesome.Glyph.QUESTION_CIRCLE)/*.size(28).color(Color.RED)*/;
         helpButton.getStyleClass().add("glyph_button");
         helpButton.setGraphic(glyph);
@@ -59,14 +63,29 @@ public class AddStudentsController {
         helpButton.setGraphic(null);
         helpButton.setText("Spreadsheet");
         helpButton.setOnAction( e -> addSpreadSheet());
+
+        for (ObservableList<SpreadsheetCell> c : SpreadSheet.getRows()) {
+            System.out.println(c);
+        }
     }
 
     private void addSpreadSheet() {
         mainCreateStudentsBorderPane.setBottom(SpreadSheet.returnSpreadSheet());
+        Glyph glyph = fontAwesome.create(FontAwesome.Glyph.QUESTION_CIRCLE)/*.size(28).color(Color.RED)*/;
+        helpButton.getStyleClass().add("glyph_button");
+        helpButton.setGraphic(glyph);
+        helpButton.setText("");
+        helpButton.setOnAction( e -> informationGuide());
     }
 
     private void readToDB() {
         // check if columns more than one and allowed
+    }
+
+
+    private void errorMessageTextArea(String errorMessage) {
+        TextArea textArea = new TextArea(errorMessage);
+        mainCreateStudentsBorderPane.setBottom(textArea);
     }
 
     private void returnToMainNode() {

@@ -81,6 +81,10 @@ public class StudentTabController {
     ArrayList<Student> queryList;
 
     @FXML
+    Button uploadStudentsButton;
+
+
+    @FXML
     public void initialize() {
 
         //loads all student objects from the database student table.

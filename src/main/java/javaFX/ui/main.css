@@ -8,7 +8,9 @@
 }
 
 
-
+.spreadsheet-cell {
+    -fx-alignment: center;
+}
 
 
 .glyph_button {
