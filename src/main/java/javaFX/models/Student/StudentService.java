@@ -17,6 +17,6 @@ public interface StudentService {
 	Student save(Student student);
 
 	@Transactional
-	void delete(Student student);
+	void deleteStudent(Student student);
 
 }

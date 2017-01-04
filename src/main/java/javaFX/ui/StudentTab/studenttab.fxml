@@ -34,7 +34,6 @@
                   <ComboBox fx:id="activeStudentCombobox" prefWidth="150.0" promptText="Indmeldt" />
                   <StackPane fx:id="regretButtonStackPane" prefHeight="50.0" prefWidth="134.0" />
                   <Button fx:id="addStudentsButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="92.0" text="Tilføj Elever" />
-                  <Button fx:id="uploadStudentsButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="121.0" text="Upload Elever" />
                   <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="67.0" text="Opryk" />
                </children>
                <VBox.margin>

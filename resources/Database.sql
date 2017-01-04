@@ -34,14 +34,14 @@ DROP TABLE IF EXISTS `deviceguru`.`students` ;
 CREATE TABLE IF NOT EXISTS `students` (
   `firstname` VARCHAR(100) NOT NULL,
   `lastname`  VARCHAR(100) NOT NULL,
-  `device`    VARCHAR(100) NOT NULL,
+  `serialnumber`    VARCHAR(100) NOT NULL,
   `email`     VARCHAR(200) NOT NULL,
   `class`     VARCHAR(10) NOT NULL,
-  `department` INT,
-  `activestudent` INT,
+  `department` INT DEFAULT 0,
+  `activestudent` INT DEFAULT 0,
   PRIMARY KEY (`email`),
   FOREIGN KEY (`email`) REFERENCES devicelogins(`email`),
-  FOREIGN KEY (`device`) REFERENCES devices(`serialnumber`)
+  FOREIGN KEY (`serialnumber`) REFERENCES devices(`serialnumber`)
 
 );
 
@@ -66,13 +66,13 @@ CREATE TABLE IF NOT EXISTS `personel` (
 DROP TABLE IF EXISTS `deviceguru`.`repairs` ;
 
 CREATE TABLE IF NOT EXISTS `repairs` (
-  `device` VARCHAR(30) NOT NULL,
-  `owner` VARCHAR(30) NOT NULL,
+  `serialnumber` VARCHAR(30) NOT NULL,
+  `email` VARCHAR(50) NOT NULL,
   `ticketid` INT AUTO_INCREMENT,
-  `status` VARCHAR(30) NOT NULL,
+  `status` VARCHAR(550) NOT NULL,
   PRIMARY KEY (`ticketid`),
-    FOREIGN KEY (`device`) REFERENCES devices(`serialnumber`),
-    FOREIGN KEY (`owner`) REFERENCES students(`email`)
+    FOREIGN KEY (`serialnumber`) REFERENCES devices(`serialnumber`),
+    FOREIGN KEY (`email`) REFERENCES students(`email`)
 #  ,   FOREIGN KEY (`owner`) REFERENCES personel(`email`)
 );
 
@@ -106,14 +106,14 @@ CREATE TABLE IF NOT EXISTS `assignments` (
 DROP TABLE IF EXISTS `deviceguru`.`devicehistory` ;
 
 CREATE TABLE IF NOT EXISTS `devicehistory` (
-  `email`     VARCHAR(30) NOT NULL,
-  `device`    VARCHAR(30) NOT NULL,
+  `email`     VARCHAR(100) NOT NULL,
+  `serialnumber`    VARCHAR(30) NOT NULL,
   `startdate` DATE        NOT NULL,
   `enddate`   DATE,
   PRIMARY KEY (`email`),
   FOREIGN KEY (`email`) REFERENCES students (`email`),
 #   FOREIGN KEY (`email`) REFERENCES personel (`email`),
-  FOREIGN KEY (`device`) REFERENCES devices (`serialnumber`)
+  FOREIGN KEY (`serialnumber`) REFERENCES devices (`serialnumber`)
 );
 
 

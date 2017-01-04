@@ -30,12 +30,18 @@ public class Student {
 	@Column(name="class")
 	private String schoolClass;  // class is a reserved keyword in Java
 
-	@OneToOne(fetch = FetchType.EAGER, cascade=CascadeType.ALL)
+	@Column(name="department")
+	private int department;
+
+	@Column(name="activestudent")
+	private int activestudent;
+
+	@OneToOne(fetch = FetchType.EAGER, cascade=CascadeType.ALL, orphanRemoval = true)
 	@PrimaryKeyJoinColumn
 	private DeviceLogin deviceLogin;
 
-	@OneToOne(fetch = FetchType.EAGER, cascade=CascadeType.ALL)
-	@JoinColumn(name="device")
+	@OneToOne(fetch = FetchType.EAGER, cascade=CascadeType.ALL, orphanRemoval = true)
+	@JoinColumn(name="serialnumber")
 	private Device device;
 
 }

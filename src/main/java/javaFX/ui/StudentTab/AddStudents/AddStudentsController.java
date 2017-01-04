@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
+import org.controlsfx.control.spreadsheet.GridBase;
 import org.controlsfx.control.spreadsheet.SpreadsheetCell;
 import org.controlsfx.glyphfont.FontAwesome;
 import org.controlsfx.glyphfont.Glyph;
@@ -67,6 +68,9 @@ public class AddStudentsController {
         for (ObservableList<SpreadsheetCell> c : SpreadSheet.getRows()) {
             System.out.println(c);
         }
+
+
+
     }
 
     private void addSpreadSheet() {

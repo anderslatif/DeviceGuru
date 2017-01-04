@@ -20,8 +20,8 @@ public class DeviceHistory {
 	@Column(name="email")
 	private String email;
 
-	@Column(name="device")
-	private String device;
+	@Column(name="serialnumber")
+	private String serialnumber;
 
 	@Temporal(TemporalType.DATE)
 	@Column(name="startdate")
@@ -30,9 +30,6 @@ public class DeviceHistory {
 	@Temporal(TemporalType.DATE)
 	@Column(name="enddate")
 	private Date enddate;
-
-	@Column(name="class")
-	private String schoolClass;
 
 
 

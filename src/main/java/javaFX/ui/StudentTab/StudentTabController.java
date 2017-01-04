@@ -1,8 +1,12 @@
 package javaFX.ui.StudentTab;
 
 import javaFX.App;
+import javaFX.models.Device.Device;
 import javaFX.models.Device.DeviceService;
+import javaFX.models.DeviceHistory.DeviceHistory;
+import javaFX.models.DeviceHistory.DeviceHistoryService;
 import javaFX.models.DeviceLogin.DeviceLoginService;
+import javaFX.models.Repair.RepairService;
 import javaFX.models.Student.Student;
 import javaFX.models.Student.StudentService;
 import javaFX.ui.StudentTab.AddStudents.AddStudentsView;
@@ -17,8 +21,11 @@ import javafx.scene.layout.StackPane;
 import javafx.util.StringConverter;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Component;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -36,8 +43,13 @@ public class StudentTabController {
     DeviceLoginService deviceLoginService;
 
     @Autowired
-    AddStudentsView addStudentsView;
+    RepairService repairService;
 
+    @Autowired
+    DeviceHistoryService deviceHistoryService;
+
+    @Autowired
+    AddStudentsView addStudentsView;
 
 
     @FXML
@@ -79,9 +91,6 @@ public class StudentTabController {
     ArrayList<Student> deletedStudents = new ArrayList<>();
 
     ArrayList<Student> queryList;
-
-    @FXML
-    Button uploadStudentsButton;
 
 
     @FXML
@@ -163,15 +172,22 @@ public class StudentTabController {
         List<Student> studentsToDelete = studentTable.getSelectionModel().getSelectedItems();
 
         for (Student s : studentsToDelete) {
-            System.out.println(s);
             deletedStudents.add(s);
 
-            // delete device history
-            //deviceService.delete(s.getDevice());
-            deviceLoginService.delete(s.getDeviceLogin());
+
+            //Query query = entityManager.createNativeQuery("Delete From deviceguru.devices where serialnumber =" + s.getDevice().getSerialnumber());
+
+
+            String serialNumber = s.getDevice().getSerialnumber();
+            repairService.deleteRepairBySerialnumber(serialNumber);
+            deviceHistoryService.deleteDeviceHistoryBySerialnumber(serialNumber);
+
+            deviceService.deleteDevice(s.getDevice());
+//            deviceService.deleteDevice(s.getDevice());
+            //deviceLoginService.delete(s.getDeviceLogin());
 
             // todo Figure out how to delete despite foreign key constraints
-            //studentService.delete(s);
+            //studentService.deleteStudent(s);
 
             studentTable.getItems().remove(s);
         }
@@ -181,14 +197,14 @@ public class StudentTabController {
         Button regretButton = new Button("Fortryd Sletning");
         Tooltip toolTip = new Tooltip("Fortryd den seneste slettede elev. \nFlere tryk fortryder flere slettede elever.");
         regretButton.setTooltip(toolTip);
-        regretButton.setOnAction( e -> regretDeletedStudent());
+        regretButton.setOnAction( e -> undoDeletedStudent());
         regretButtonStackPane.getChildren().add(regretButton);
         // implement regret deleted student method
 
         UserMessage.showSuccess("Du har slettet en elev.");
     }
 
-    private void regretDeletedStudent() {
+    private void undoDeletedStudent() {
 
         Student studentToAddAgain = deletedStudents.get(deletedStudents.size()-1);
         deletedStudents.remove(studentToAddAgain);

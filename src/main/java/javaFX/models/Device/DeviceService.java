@@ -1,8 +1,10 @@
 package javaFX.models.Device;
 
 import javaFX.models.DeviceLogin.DeviceLogin;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
 
-import javax.transaction.Transactional;
+import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 public interface DeviceService {
@@ -13,6 +15,7 @@ public interface DeviceService {
 	Device save(Device device);
 
 	@Transactional
-	void delete(Device device);
+	void deleteDevice(Device device);
+
 
 }

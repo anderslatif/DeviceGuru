@@ -20,14 +20,17 @@ public class Repair {
 	@Column(name="ticketid")
 	private int ticketID;
 
+
+	@Column(name="serialnumber")
+	private String serialnumber;
+
 	@Column(name="status")
 	private String status;
 
-	@Column(name="owner")
-	private String owner;
+	@Column(name="email")
+	private String email;
 
-	@Column(name="device")
-	private String device;
+
 
 
 }

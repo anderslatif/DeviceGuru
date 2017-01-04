@@ -33,7 +33,7 @@ class StudentServiceImpl implements StudentService {
 	}
 
 	@Override
-	public void delete(Student student) {
+	public void deleteStudent(Student student) {
 		studentRepository.delete(student);
 	}
 }
