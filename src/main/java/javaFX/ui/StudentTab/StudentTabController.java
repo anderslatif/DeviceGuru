@@ -178,11 +178,12 @@ public class StudentTabController {
             //Query query = entityManager.createNativeQuery("Delete From deviceguru.devices where serialnumber =" + s.getDevice().getSerialnumber());
 
 
-            String serialNumber = s.getDevice().getSerialnumber();
+         /*   String serialNumber = s.getDevice().getSerialnumber();
             repairService.deleteRepairBySerialnumber(serialNumber);
             deviceHistoryService.deleteDeviceHistoryBySerialnumber(serialNumber);
+            deviceService.deleteDevice(s.getDevice());*/
 
-            deviceService.deleteDevice(s.getDevice());
+
 //            deviceService.deleteDevice(s.getDevice());
             //deviceLoginService.delete(s.getDeviceLogin());
 

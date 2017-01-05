@@ -24,6 +24,10 @@ public class SpreadSheet {
 
     public static SpreadsheetView returnSpreadSheet() {
 
+        if (spreadsheetView != null) {
+            return spreadsheetView;
+        }
+
         int rowCount = 100;
         int columnCount = 15;
         GridBase grid = new GridBase(rowCount, columnCount);
