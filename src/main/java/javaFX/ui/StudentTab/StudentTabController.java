@@ -1,9 +1,7 @@
 package javaFX.ui.StudentTab;
 
 import javaFX.App;
-import javaFX.models.Device.Device;
 import javaFX.models.Device.DeviceService;
-import javaFX.models.DeviceHistory.DeviceHistory;
 import javaFX.models.DeviceHistory.DeviceHistoryService;
 import javaFX.models.DeviceLogin.DeviceLoginService;
 import javaFX.models.Repair.RepairService;
@@ -20,13 +18,12 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 import javafx.util.StringConverter;
 import org.apache.commons.lang3.StringUtils;
+import org.controlsfx.control.textfield.TextFields;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Component;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -105,7 +102,7 @@ public class StudentTabController {
         createStudentTable();
         loadStudents(studentList);
 
-        searchFieldOnKeyPress();
+        searchFieldsOnKeyPress();
         setUpSearchComboboxes();
         setUpSlider();
 
@@ -122,9 +119,13 @@ public class StudentTabController {
                 .filter(s -> !s.trim().isEmpty())
                 .collect(Collectors.toCollection(ArrayList::new));
 
+        Collections.sort(uniqueSchoolClasses);
+
+        uniqueSchoolClasses.add(0, "Alle");
+
         uniqueSchoolClasses.forEach(classString -> schoolClassCombobox.getItems().add(classString));
 
-        activeStudentCombobox.getItems().addAll("Indmeldt", "Gradueret", "Alle");
+        activeStudentCombobox.getItems().addAll("Alle", "Indmeldt", "Gradueret");
 
         departmentCombobox.getItems().addAll("Alle", "Indskolingen", "Udskolingen");
 
@@ -133,8 +134,6 @@ public class StudentTabController {
 
 
 
-    // consider using EasyBind.. static bindings will be natively supported by Java 9
-    // https://github.com/TomasMikula/EasyBind
     /**
      * creating the tablecolumns and defining them
      */
@@ -178,17 +177,16 @@ public class StudentTabController {
             //Query query = entityManager.createNativeQuery("Delete From deviceguru.devices where serialnumber =" + s.getDevice().getSerialnumber());
 
 
-         /*   String serialNumber = s.getDevice().getSerialnumber();
-            repairService.deleteRepairBySerialnumber(serialNumber);
+/*            String serialNumber = s.getDevice().getSerialnumber();
             deviceHistoryService.deleteDeviceHistoryBySerialnumber(serialNumber);
-            deviceService.deleteDevice(s.getDevice());*/
-
-
-//            deviceService.deleteDevice(s.getDevice());
+            repairService.deleteRepairBySerialnumber(serialNumber);
+            studentService.deleteStudent(s);*/
             //deviceLoginService.delete(s.getDeviceLogin());
+            //deviceService.deleteDevice(s.getDevice());
+
+
 
             // todo Figure out how to delete despite foreign key constraints
-            //studentService.deleteStudent(s);
 
             studentTable.getItems().remove(s);
         }
@@ -232,7 +230,7 @@ public class StudentTabController {
         */
     }
 
-    private void searchFieldOnKeyPress() {
+    private void searchFieldsOnKeyPress() {
 
         firstNameTextField.setOnKeyReleased( e -> search());
         lastNameTextField.setOnKeyReleased( e -> search());
@@ -245,17 +243,31 @@ public class StudentTabController {
 
     private void search() {
 
-        // remember to include indmeldt and department combobox.. create enums
-        // need to change the entity model
-
-        String comboBoxContent = schoolClassCombobox.getSelectionModel().getSelectedItem() == null ? "" :
-                schoolClassCombobox.getSelectionModel().getSelectedItem().toString();
-
-        // todo needs more search queries inside filter.. add &&
         ArrayList<Student> filteredQueryList = queryList.stream()
                 .filter(s ->
-                        StringUtils.containsIgnoreCase(s.getFirstName(), firstNameTextField.getText()))
+                        StringUtils.containsIgnoreCase(s.getFirstName(), firstNameTextField.getText()) &&
+                        StringUtils.containsIgnoreCase(s.getLastName(), lastNameTextField.getText()) &&
+                        StringUtils.containsIgnoreCase(s.getDevice().getSerialnumber(), serialNumberTextField.getText()) &&
+                        StringUtils.containsIgnoreCase(s.getEmail(), emailTextField.getText())
+                )
                 .collect(Collectors.toCollection(ArrayList::new));
+
+        String schoolClassBoxContent = schoolClassCombobox.getValue() == null ? "Alle" : schoolClassCombobox.getValue().toString();
+        if (!schoolClassBoxContent.contains("Alle")) {
+            filteredQueryList = filteredQueryList.stream().filter(s -> s.getSchoolClass() != null && StringUtils.containsIgnoreCase(s.getSchoolClass(), schoolClassBoxContent)).collect(Collectors.toCollection(ArrayList::new));
+        }
+
+        String departmentBoxContent = departmentCombobox.getValue() == null ? "Alle" : departmentCombobox.getValue().toString();
+        if (!departmentBoxContent.contains("Alle")) {
+
+            filteredQueryList = filteredQueryList.stream().filter(s -> s.getDepartment() != null && StringUtils.containsIgnoreCase(s.getDepartment(), departmentBoxContent)).collect(Collectors.toCollection(ArrayList::new));
+        }
+
+        String activeStudentBoxContent = activeStudentCombobox.getValue() == null ? "Alle" : activeStudentCombobox.getValue().toString();
+        if (!activeStudentBoxContent.contains("Alle")) {
+            filteredQueryList = filteredQueryList.stream().filter(s -> StringUtils.containsIgnoreCase(s.getActivestudent() != null ? s.getSchoolClass() : "", activeStudentBoxContent)).collect(Collectors.toCollection(ArrayList::new));
+        }
+
 
         ObservableList<Student> searchResultObsList = FXCollections.observableArrayList(filteredQueryList);
         studentTable.setItems(searchResultObsList);

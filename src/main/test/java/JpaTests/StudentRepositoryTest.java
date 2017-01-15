@@ -66,9 +66,9 @@ public class StudentRepositoryTest {
 
     @Test
     public void getAllStudentsTest() {
-        studentService.save(new Student("email1", "firstname", "lastname", "2a", 0, 0, new DeviceLogin("email1", "password"), new Device("serialnumber1", "type")));
-        studentService.save(new Student("email2", "firstname", "lastname", "2a", 0, 0, new DeviceLogin("email2", "password"), new Device("serialnumber2", "type")));
-        studentService.save(new Student("email3", "firstname", "lastname", "2a", 0, 0, new DeviceLogin("email3", "password"), new Device("serialnumber3", "type")));
+        studentService.save(new Student("email1", "firstname", "lastname", "2a", "", "", new DeviceLogin("email1", "password"), new Device("serialnumber1", "type")));
+        studentService.save(new Student("email2", "firstname", "lastname", "2a", "", "",  new DeviceLogin("email2", "password"), new Device("serialnumber2", "type")));
+        studentService.save(new Student("email3", "firstname", "lastname", "2a", "", "",  new DeviceLogin("email3", "password"), new Device("serialnumber3", "type")));
         Assert.assertEquals(studentService.findAll().size(), 3);
     }
 
@@ -80,7 +80,7 @@ public class StudentRepositoryTest {
 
     @Test
     public void edgeCaseStudent() {
-        studentService.save(new Student("øæå@mail.com", "()'%&", "!´?½§`", "-=+,<>", 0, 0, new DeviceLogin("sql SELECT * FROM students;", "password"), new Device("serialnumber1", "type")));
+        studentService.save(new Student("øæå@mail.com", "()'%&", "!´?½§`", "-=+,<>", "", "", new DeviceLogin("sql SELECT * FROM students;", "password"), new Device("serialnumber1", "type")));
 
         Student student = studentService.findAll().get(0);
         Assert.assertEquals(student.getEmail(), "øæå@mail.com");
@@ -99,8 +99,8 @@ public class StudentRepositoryTest {
 
     @Test
     public void ensureThatNonUniqueEmailsFail() {
-        studentService.save(new Student("same@email", "firstname", "lastname", "2a", 0, 0, new DeviceLogin("email1", "password"), new Device("serialnumber1", "type")));
-        studentService.save(new Student("same@email", "firstname", "lastname", "2a", 0, 0, new DeviceLogin("email1", "password"), new Device("serialnumber1", "type")));
+        studentService.save(new Student("same@email", "firstname", "lastname", "2a", "", "", new DeviceLogin("email1", "password"), new Device("serialnumber1", "type")));
+        studentService.save(new Student("same@email", "firstname", "lastname", "2a", "", "", new DeviceLogin("email1", "password"), new Device("serialnumber1", "type")));
 
         Assert.assertEquals(studentService.findAll().size(), 1);
 
@@ -120,22 +120,22 @@ public class StudentRepositoryTest {
         // but rather than expecting the exception in the scope of the entire method we expect it before each DB call
 
         exception.expect(JpaSystemException.class);
-        studentService.save(new Student(null, "firstname", "lastname", "2a", 0, 0, new DeviceLogin("email1", "password"), new Device("serialnumber1", "type")));
+        studentService.save(new Student(null, "firstname", "lastname", "2a", "", "", new DeviceLogin("email1", "password"), new Device("serialnumber1", "type")));
 
         exception.expect(JpaSystemException.class);
-        studentService.save(new Student("same@email", null, "lastname", "2a", 0, 0, new DeviceLogin("email1", "password"), new Device("serialnumber1", "type")));
+        studentService.save(new Student("same@email", null, "lastname", "2a", "", "", new DeviceLogin("email1", "password"), new Device("serialnumber1", "type")));
 
         exception.expect(JpaSystemException.class);
-        studentService.save(new Student("same@email", "firstname", null, "2a", 0, 0, new DeviceLogin("email1", "password"), new Device("serialnumber1", "type")));
+        studentService.save(new Student("same@email", "firstname", null, "2a", "", "", new DeviceLogin("email1", "password"), new Device("serialnumber1", "type")));
 
         exception.expect(JpaSystemException.class);
-        studentService.save(new Student("same@email", "firstname", "lastname", null, 0, 0, new DeviceLogin("email1", "password"), new Device("serialnumber1", "type")));
+        studentService.save(new Student("same@email", "firstname", "lastname", null, "", "", new DeviceLogin("email1", "password"), new Device("serialnumber1", "type")));
 
         exception.expect(JpaSystemException.class);
-        studentService.save(new Student("same@email", "firstname", "lastname", "2a", 0, 0, null, new Device("serialnumber1", "type")));
+        studentService.save(new Student("same@email", "firstname", "lastname", "2a", "", "", null, new Device("serialnumber1", "type")));
 
         exception.expect(JpaSystemException.class);
-        studentService.save(new Student("same@email", "firstname", "lastname", "2a", 0, 0, new DeviceLogin("email1", "password"), null));
+        studentService.save(new Student("same@email", "firstname", "lastname", "2a", "", "", new DeviceLogin("email1", "password"), null));
 
         Assert.assertEquals(studentService.findAll().size(), 0);
     }

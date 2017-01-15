@@ -31,10 +31,10 @@ public class Student {
 	private String schoolClass;  // class is a reserved keyword in Java
 
 	@Column(name="department")
-	private int department;
+	private String department;
 
 	@Column(name="activestudent")
-	private int activestudent;
+	private String activestudent;
 
 	@OneToOne(fetch = FetchType.EAGER, cascade=CascadeType.ALL, orphanRemoval = true)
 	@PrimaryKeyJoinColumn

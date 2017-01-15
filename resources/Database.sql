@@ -37,8 +37,8 @@ CREATE TABLE IF NOT EXISTS `students` (
   `serialnumber`    VARCHAR(100) NOT NULL,
   `email`     VARCHAR(200) NOT NULL,
   `class`     VARCHAR(10) NOT NULL,
-  `department` INT DEFAULT 0,
-  `activestudent` INT DEFAULT 0,
+  `department` VARCHAR(100),
+  `activestudent` VARCHAR(100),
   PRIMARY KEY (`email`),
   FOREIGN KEY (`email`) REFERENCES devicelogins(`email`),
   FOREIGN KEY (`serialnumber`) REFERENCES devices(`serialnumber`)
