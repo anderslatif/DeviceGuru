@@ -14,6 +14,8 @@ class DeviceHistoryServiceImpl implements DeviceHistoryService {
 
 	private final DeviceHistoryRepository deviceHistoryRepository;
 
+	private final DeviceHistoryCustomRepository deviceHistoryCustomRepository;
+
 	@Override
 	public List<DeviceHistory> findAll() {
 		return deviceHistoryRepository.findAll();
@@ -25,6 +27,10 @@ class DeviceHistoryServiceImpl implements DeviceHistoryService {
 		for (DeviceHistory deviceHistory : matchingDeviceHistories) {
 			deviceHistoryRepository.delete(deviceHistory);
 		}
+	}
+
+	public List<DeviceHistory> findByEmail(String email) {
+		return deviceHistoryCustomRepository.findByEmail(email);
 	}
 
 

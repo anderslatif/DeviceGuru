@@ -110,7 +110,7 @@ CREATE TABLE IF NOT EXISTS `devicehistory` (
   `serialnumber`    VARCHAR(30) NOT NULL,
   `startdate` DATE        NOT NULL,
   `enddate`   DATE,
-  PRIMARY KEY (`email`),
+#   PRIMARY KEY (`email`),
   FOREIGN KEY (`email`) REFERENCES students (`email`),
 #   FOREIGN KEY (`email`) REFERENCES personel (`email`),
   FOREIGN KEY (`serialnumber`) REFERENCES devices (`serialnumber`)

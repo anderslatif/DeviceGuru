@@ -39,6 +39,8 @@ INSERT INTO `devices` (`serialnumber`, `type`) VALUES
   ('23435678543', 'iPad'),
   ('34546738433', 'iPad'),
   ('66598765432', 'iPad'),
+  ('1234560324', 'iPad'),
+  ('9872487204', 'iPad'),
   ('43254565474', 'ChromeBook'),
   ('56546543454', 'ChromeBook'),
   ('64554645455', 'ChromeBook'),
@@ -95,5 +97,8 @@ INSERT INTO `assignments`(`assignment`, `owner`, `id`) VALUES
   ('assignment text', 'mattis@ac.org', DEFAULT);
 
 INSERT INTO `devicehistory`(`email`, `serialnumber`, `startdate`, `enddate`) VALUES
-  ('e1@mail.com', '3242480324', DATE(NOW()), null);
+  ('e1@mail.com', '3242480324', DATE_SUB(NOW(), INTERVAL 1 YEAR), DATE_SUB(NOW(), INTERVAL 10 MONTH)),
+  ('e1@mail.com', '1234560324', DATE_SUB(NOW(), INTERVAL 6 MONTH), DATE_SUB(NOW(), INTERVAL 31 DAY)),
+  ('e1@mail.com', '9872487204', DATE_SUB(NOW(), INTERVAL 30 DAY), DATE(NOW())),
+  ('e2@mail.com', '98712211899', DATE_SUB(NOW(), INTERVAL 30 DAY), DATE(NOW()));
 

@@ -1,7 +1,9 @@
 package javaFX.ui.StudentTab;
 
 import javaFX.App;
+import javaFX.models.Device.Device;
 import javaFX.models.Device.DeviceService;
+import javaFX.models.DeviceHistory.DeviceHistory;
 import javaFX.models.DeviceHistory.DeviceHistoryService;
 import javaFX.models.DeviceLogin.DeviceLoginService;
 import javaFX.models.Repair.RepairService;
@@ -154,6 +156,7 @@ public class StudentTabController {
             }
         });
 
+        studentTable.setOnKeyReleased( e -> showStudentHistory());
         studentTable.setOnMouseClicked( e -> showStudentHistory());
 
         StudentTableColumns.setUpColumns(studentTable, studentService, deviceService, deviceLoginService);
@@ -283,7 +286,8 @@ public class StudentTabController {
 
     private void showStudentHistory() {
         Student selectedStudent = studentTable.getSelectionModel().getSelectedItem();
-        selectedStudent.getDevice().getSerialnumber();
+        List<DeviceHistory> studentDeviceHistories = deviceHistoryService.findByEmail(selectedStudent.getEmail());
+        double amountOfRows = studentDeviceHistories.size();
 
         // todo get studenthistory from table
         // easiest way to do this is to ignore time span and split the slider into equal parts depending on how many intervals there are
@@ -293,41 +297,114 @@ public class StudentTabController {
         // these values will have to be configured dynamically .. this is just an example
         deviceHistorySlider.setMin(0);
         deviceHistorySlider.setValue(1);
-        deviceHistorySlider.setMax(3);
+        deviceHistorySlider.setMax(2*amountOfRows-1);  // 2* because start and end date
         deviceHistorySlider.setMinorTickCount(0);
         deviceHistorySlider.setMajorTickUnit(1);
         deviceHistorySlider.setShowTickMarks(true);
         deviceHistorySlider.setShowTickLabels(true);
 
+        if (amountOfRows == 0) {
 
-        deviceHistorySlider.setLabelFormatter(new StringConverter<Double>() {
-            @Override
-            public String toString(Double n) {
-                if (n < 0.5) return "Value1";
-                if (n < 1.5) return "Value2";
-                if (n < 2.5) return "Value3";
+            deviceHistorySlider.setMax(3);
 
-                return "Value 4";
-            }
-
-            @Override
-            public Double fromString(String s) {
-                switch (s) {
-                    case "Value1":
-                        return 0d;
-                    case "Value2":
-                        return 1d;
-                    case "Value3":
-                        return 2d;
-                    case "Value4":
-                        return 3d;
-
-                    default:
-                        return 3d;
+            deviceHistorySlider.setLabelFormatter(new StringConverter<Double>() {
+                @Override
+                public String toString(Double n) {
+                    if (n < 0.5) return ".";
+                    if (n < 2) return "No device history to show";
+                    return ".";
                 }
-            }
-        });
 
+                @Override
+                public Double fromString(String s) {
+                    switch (s) {
+                        case ".":
+                            return 0d;
+                            case "No device history to show":
+                            return 1d;
+                        default:
+                            return 1d;
+                    }
+                }
+            });
+        }
+
+        else {
+
+/*            deviceHistorySlider.setLabelFormatter(new StringConverter<Double>() {
+                @Override
+                public String toString(Double n) {
+
+                    int currentRow = 0;
+                    double currentTickCount = 0.5;
+                    boolean isStartDate = true;
+
+                    for (DeviceHistory devHis : studentDeviceHistories) {
+                        if (n < currentTickCount) {
+                            if (isStartDate) {
+                                devHis.getStartdate().toString();
+                                isStartDate = false;
+                            } else {
+                                devHis.getEnddate().toString();
+                                isStartDate = true;
+                                currentRow += 1;
+                            }
+                        }
+                        currentTickCount += 1;
+                    }
+
+                    return "Current date";
+                }
+
+                @Override
+                public Double fromString(String s) {
+
+                    switch (s) {
+                        case "Value1":
+                            return 0d;
+                        case "Value2":
+                            return 1d;
+                        case "Value3":
+                            return 2d;
+                        case "Value4":
+                            return 3d;
+
+                        default:
+                            return 3d;
+                    }
+                }
+            });*/
+
+
+
+            deviceHistorySlider.setLabelFormatter(new StringConverter<Double>() {
+                @Override
+                public String toString(Double n) {
+                    if (n < 0.5) return "Value1";
+                    if (n < 1.5) return "Value2";
+                    if (n < 2.5) return "Value3";
+
+                    return "Value 4";
+                }
+
+                @Override
+                public Double fromString(String s) {
+                    switch (s) {
+                        case "Value1":
+                            return 0d;
+                        case "Value2":
+                            return 1d;
+                        case "Value3":
+                            return 2d;
+                        case "Value4":
+                            return 3d;
+
+                        default:
+                            return 3d;
+                    }
+                }
+            });
+        }
     }
 
 

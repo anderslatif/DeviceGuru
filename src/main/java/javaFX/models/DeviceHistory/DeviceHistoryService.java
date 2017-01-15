@@ -10,4 +10,7 @@ public interface DeviceHistoryService {
 	@Transactional
 	void deleteDeviceHistoryBySerialnumber(String serialnumber);
 
+	List<DeviceHistory> findByEmail(String email);
+
+
 }

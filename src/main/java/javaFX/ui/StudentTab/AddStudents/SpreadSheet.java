@@ -3,15 +3,15 @@ package javaFX.ui.StudentTab.AddStudents;
 import javaFX.App;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.EventHandler;
-import javafx.scene.control.Cell;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.input.Clipboard;
-import javafx.scene.input.DataFormat;
+import javafx.scene.Scene;
+import javafx.scene.control.TablePosition;
+import javafx.scene.input.*;
 import org.controlsfx.control.spreadsheet.*;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
 
 public class SpreadSheet {
 
@@ -52,11 +52,13 @@ public class SpreadSheet {
         grid.setRows(rows);
 
         spreadsheetView = new SpreadsheetView(grid);
+        spreadsheetView.setId("spreadsheetView");
 //        spreadsheetView.prefWidthProperty().bind(App.getStage().widthProperty().subtract(50));
 //        spreadsheetView.prefHeightProperty().bind(App.getStage().heightProperty().subtract(100));
 
-
         spreadsheetView.setFixingColumnsAllowed(true);
+
+        setupPastingInSpreadsheet();
 
         return spreadsheetView;
     }
@@ -83,12 +85,45 @@ public class SpreadSheet {
         return rows;
     }
 
-    public static void pasteIntoSpreadsheet() {
-        Clipboard clipboard = Clipboard.getSystemClipboard();
+    public static void setupPastingInSpreadsheet() {
 
-        spreadsheetView.getSelectionModel().getFocusedCell();
+        Scene scene = App.getStage().getScene();
+        scene.getAccelerators().put(new KeyCodeCombination(KeyCode.V, KeyCombination.CONTROL_ANY), new Runnable() {
+
+            Clipboard clipboard = Clipboard.getSystemClipboard();
+            DataFormat dataFormat = getDataFormat(clipboard.getContentTypes());
+            @Override
+            public void run() {
+                pasteIntoSpreadsheet(clipboard, dataFormat);
+            }
+        });
+    }
+
+    private static DataFormat getDataFormat(Set<DataFormat> formats) {
+        for (DataFormat format : formats) {
+            return format;
+        }
+        return null;
     }
 
 
+    public static void pasteIntoSpreadsheet(Clipboard clipboard, DataFormat dataFormat) {
+
+        final TablePosition<?, ?> focusedCell = spreadsheetView.getSelectionModel().getFocusedCell();
+
+        int currentRow = focusedCell.getRow();
+
+        final int baseColumn = focusedCell.getColumn();
+        int currentColumn = focusedCell.getColumn();
+
+        if (currentRow == -1 || currentColumn == -1) {
+            return;
+        }
+
+
+        @SuppressWarnings("unchecked")
+        final ArrayList<GridChange> list = (ArrayList<GridChange>) clipboard.getContent(dataFormat);
+
+    }
 
 }
