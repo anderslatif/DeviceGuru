@@ -331,7 +331,7 @@ public class StudentTabController {
 
         else {
 
-/*            deviceHistorySlider.setLabelFormatter(new StringConverter<Double>() {
+            deviceHistorySlider.setLabelFormatter(new StringConverter<Double>() {
                 @Override
                 public String toString(Double n) {
 
@@ -339,7 +339,10 @@ public class StudentTabController {
                     double currentTickCount = 0.5;
                     boolean isStartDate = true;
 
-                    for (DeviceHistory devHis : studentDeviceHistories) {
+                    if (n < 0.5) return studentDeviceHistories.get(0).getStartdate().toString();
+                    if (n < 2) return studentDeviceHistories.get(0).getEnddate().toString();
+                    return "No value";
+/*                    for (DeviceHistory devHis : studentDeviceHistories) {
                         if (n < currentTickCount) {
                             if (isStartDate) {
                                 devHis.getStartdate().toString();
@@ -354,12 +357,27 @@ public class StudentTabController {
                     }
 
                     return "Current date";
+                    */
                 }
+
 
                 @Override
                 public Double fromString(String s) {
 
-                    switch (s) {
+                    if (s.contains(studentDeviceHistories.get(0).getStartdate().toString())) {
+                        return 0d;
+                    }
+
+                    if (s.contains(studentDeviceHistories.get(0).getEnddate().toString())) {
+                        return 1d;
+                    }
+
+                    if (s.contains("No value")) {
+                        return 1d;
+                    }
+                    return 1d;
+
+                  /*  switch (s) {
                         case "Value1":
                             return 0d;
                         case "Value2":
@@ -372,38 +390,10 @@ public class StudentTabController {
                         default:
                             return 3d;
                     }
-                }
-            });*/
-
-
-
-            deviceHistorySlider.setLabelFormatter(new StringConverter<Double>() {
-                @Override
-                public String toString(Double n) {
-                    if (n < 0.5) return "Value1";
-                    if (n < 1.5) return "Value2";
-                    if (n < 2.5) return "Value3";
-
-                    return "Value 4";
-                }
-
-                @Override
-                public Double fromString(String s) {
-                    switch (s) {
-                        case "Value1":
-                            return 0d;
-                        case "Value2":
-                            return 1d;
-                        case "Value3":
-                            return 2d;
-                        case "Value4":
-                            return 3d;
-
-                        default:
-                            return 3d;
-                    }
+                }*/
                 }
             });
+
         }
     }
 
