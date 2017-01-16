@@ -1,6 +1,7 @@
 package javaFX.ui.StudentTab.AddStudents;
 
 import javaFX.App;
+import javaFX.util.UserMessage;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Scene;
@@ -21,6 +22,7 @@ public class SpreadSheet {
     // https://groups.google.com/forum/#!topic/controlsfx-dev/wxuqDwCpGgY
 
     private static SpreadsheetView spreadsheetView;
+    private static GridBase grid;
 
     public static SpreadsheetView returnSpreadSheet() {
 
@@ -30,7 +32,7 @@ public class SpreadSheet {
 
         int rowCount = 100;
         int columnCount = 15;
-        GridBase grid = new GridBase(rowCount, columnCount);
+        grid = new GridBase(rowCount, columnCount);
         rows = FXCollections.observableArrayList();
 
 
@@ -58,10 +60,17 @@ public class SpreadSheet {
 
         spreadsheetView.setFixingColumnsAllowed(true);
 
+        setupSpreadSheetView();
         setupPastingInSpreadsheet();
 
         return spreadsheetView;
     }
+
+    public static void setupSpreadSheetView() {
+
+    }
+
+
 
     public static SpreadsheetCell firstRowCell(int row, int column) {
         SpreadsheetCell cell = SpreadsheetCellType.STRING.createCell(row, column, 1, 1,"             ");
@@ -112,18 +121,26 @@ public class SpreadSheet {
         final TablePosition<?, ?> focusedCell = spreadsheetView.getSelectionModel().getFocusedCell();
 
         int currentRow = focusedCell.getRow();
-
         final int baseColumn = focusedCell.getColumn();
         int currentColumn = focusedCell.getColumn();
 
         if (currentRow == -1 || currentColumn == -1) {
+            UserMessage.showSuccess("You have not selected a spreadsheet cell.");
             return;
         }
 
+        String[] splitLinesStrings = clipboard.getString().split("\\r\\n");
 
-        @SuppressWarnings("unchecked")
-        final ArrayList<GridChange> list = (ArrayList<GridChange>) clipboard.getContent(dataFormat);
+        for (String splitString : splitLinesStrings) {
+            String[] splitRowsStrings = splitString.split("\\t");
 
+            for (String splitRowString : splitRowsStrings) {
+                grid.setCellValue(currentRow, currentColumn, splitRowString);
+                currentColumn++;
+            }
+            currentRow++;
+            currentColumn = baseColumn;
+        }
     }
 
 }
