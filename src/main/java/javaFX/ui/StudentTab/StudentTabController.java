@@ -25,6 +25,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -296,8 +297,8 @@ public class StudentTabController {
 
         // these values will have to be configured dynamically .. this is just an example
         deviceHistorySlider.setMin(0);
-        deviceHistorySlider.setValue(1);
         deviceHistorySlider.setMax(2*amountOfRows-1);  // 2* because start and end date
+        deviceHistorySlider.setValue(1);
         deviceHistorySlider.setMinorTickCount(0);
         deviceHistorySlider.setMajorTickUnit(1);
         deviceHistorySlider.setShowTickMarks(true);
@@ -330,68 +331,162 @@ public class StudentTabController {
         }
 
         else {
+            ArrayList<String> numbers = new ArrayList<>(Arrays.asList("1", "2", "3", "4", "5", "6"));
+            deviceHistorySlider.setMax(numbers.size()-1);
+            numbers.add(0, "placeholder");
 
             deviceHistorySlider.setLabelFormatter(new StringConverter<Double>() {
+                double currentTickCount = 0.5d;
+                boolean isStartDate = true;
+                int listCount = 0;
+                boolean isFirstTime = true;
+                boolean isSecondTime = true;
+
+                ArrayList<Double> nValues = new ArrayList<Double>();
+
                 @Override
                 public String toString(Double n) {
 
-                    int currentRow = 0;
-                    double currentTickCount = 0.5;
-                    boolean isStartDate = true;
+/*                    for (String labelString : numbers) {
+                        if (n < 0.5) return numbers.get(0);
+                        if (n < 1.5) return numbers.get(1);
+                        if (n < 2.5) return numbers.get(2);
+                        if (n < 3.5) return numbers.get(3);
+                    }
+                    return ".";*/
 
-                    if (n < 0.5) return studentDeviceHistories.get(0).getStartdate().toString();
-                    if (n < 2) return studentDeviceHistories.get(0).getEnddate().toString();
-                    return "No value";
-/*                    for (DeviceHistory devHis : studentDeviceHistories) {
+
+                    while (listCount < numbers.size()-1) {
+
                         if (n < currentTickCount) {
-                            if (isStartDate) {
-                                devHis.getStartdate().toString();
-                                isStartDate = false;
-                            } else {
-                                devHis.getEnddate().toString();
-                                isStartDate = true;
-                                currentRow += 1;
+
+                            if (isFirstTime) {
+                                currentTickCount -= 1d;
+                                listCount -= 1;
+                                isFirstTime = false;
                             }
+                            currentTickCount += 1d;
+                            listCount += 1;
+
+
+                            System.out.println(n + ": " + currentTickCount + "  ==  " + listCount + "  ==  "  + numbers.get(listCount));
+
+                            return numbers.get(listCount);
+                        } else {
+                            return "Error";
                         }
-                        currentTickCount += 1;
                     }
 
-                    return "Current date";
-                    */
+                    if (n < currentTickCount) {
+                        return numbers.get(listCount);
+                    }
+
+                    return numbers.get(listCount);
+                }
+
+                double tickCounter = -1d;
+
+                @Override
+                public Double fromString(String s) {
+
+                    for (String labelString : numbers) {
+                        if (s.contains("No value")) {
+                            return tickCounter+1d;
+                        }
+                        if (s.contains(labelString)) {
+                            return tickCounter+1d;
+                        }
+                    }
+
+                    return tickCounter;
+                }
+
+
+                /*@Override
+                public String toString(Double n) {
+
+                    if (listCount < studentDeviceHistories.size()) {
+
+                        currentTickCount += 1;
+
+                        if (listCount < studentDeviceHistories.size() && isStartDate) {
+                            listCount += 1;
+                        }
+
+                        if (isStartDate) {
+                            isStartDate = !isStartDate;
+                            if (n < currentTickCount) {
+                                if (studentDeviceHistories.get(listCount).getStartdate() == null) {
+                                    return "No value";
+                                }
+                                return studentDeviceHistories.get(listCount).getStartdate().toString();
+                            }
+                        } else {
+                            isStartDate = !isStartDate;
+                            if (studentDeviceHistories.get(listCount).getEnddate() == null) {
+                                return "No value";
+                            }
+                            return studentDeviceHistories.get(listCount).getEnddate().toString();
+                        }
+
+                        return "No value";
+                    }
+
+
+
+
+*//*                    for (DeviceHistory devHis : studentDeviceHistories) {
+
+                        currentTickCount += 1;
+                        System.out.println(currentTickCount);
+
+                        if (n < currentTickCount) {
+                            if (devHis.getStartdate() == null) {
+                                return "No value";
+                            }
+                            System.out.println("start" + currentTickCount);
+                            return devHis.getStartdate().toString();
+                        }
+
+                        if (n < currentTickCount) {
+                            if (devHis.getEnddate() == null) {
+                                return "No value";
+                            }
+                            System.out.println("stop" + currentTickCount);
+                            return devHis.getEnddate().toString();
+                        }
+
+                    }*//*
+
+
+                    return "No value";
                 }
 
 
                 @Override
                 public Double fromString(String s) {
 
-                    if (s.contains(studentDeviceHistories.get(0).getStartdate().toString())) {
-                        return 0d;
+                    double currentTickCount = 0d;
+
+                    for (DeviceHistory devHis : studentDeviceHistories) {
+
+                        if (s.contains("No value")) {
+                            return currentTickCount + 1d;
+                        }
+
+                        if (devHis.getStartdate() != null && s.contains(devHis.getStartdate().toString())) {
+                            return currentTickCount + 1d;
+                        }
+
+                        if (devHis.getStartdate() != null && s.contains(devHis.getEnddate().toString())) {
+                            return currentTickCount + 1d;
+                        }
                     }
 
-                    if (s.contains(studentDeviceHistories.get(0).getEnddate().toString())) {
-                        return 1d;
-                    }
+                    return currentTickCount;
 
-                    if (s.contains("No value")) {
-                        return 1d;
-                    }
-                    return 1d;
 
-                  /*  switch (s) {
-                        case "Value1":
-                            return 0d;
-                        case "Value2":
-                            return 1d;
-                        case "Value3":
-                            return 2d;
-                        case "Value4":
-                            return 3d;
-
-                        default:
-                            return 3d;
-                    }
                 }*/
-                }
             });
 
         }
